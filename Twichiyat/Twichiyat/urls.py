@@ -9,6 +9,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     re_path(r'^$',views.home_page,name="home")
 ]
-#register the url for articles in the main urls file
+
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
