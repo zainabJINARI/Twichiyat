@@ -11,6 +11,7 @@ class Product(models.Model) :
       image = models.ImageField(default='default.png' , blank=True)
       #owner 
       #Reviews 
+      #Status
 
       def __str__(self) :
             return  "Type :{0} , Price:{1}".format(self.type_p , self.price)
