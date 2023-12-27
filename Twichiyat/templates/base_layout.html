@@ -19,10 +19,9 @@
                 <li class="nav-elt"><a href=""><span class="hidden"><i class="fa-solid fa-list" style="color: #342931;"></i></span>Categories</a></li>
                 {% if user.is_authenticated %}
 
-                    <form action="{% url 'userP:login' %}" class="nav-elt" method="post">
-                        <!-- log out change action -->
+                    <form action="{% url 'userP:logout' %}" class="logout-link" method="POST">
                         {% csrf_token %}
-                        <button type="submit"><span class="hidden"><i class="fa-solid fa-right-from-bracket" style="color: #342931;"></i></span>Logout</button>
+                        <button type="submit"><span class="hidden"><i class="fa-solid fa-right-from-bracket" style="color: #4e83df;"></i></span>Logout</button>
                     </form>
               
                     {% for p in profiles %}
