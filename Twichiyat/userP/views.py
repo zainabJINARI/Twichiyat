@@ -12,4 +12,9 @@ def signup_view(request):
     else:
         form = CreateUser()
     return render(request,'userP/signup.html',{'form':form})
+def login_view(request):
+    if request.method == 'POST':
+        return redirect('home')
+    else:
+        return render(request,'userP/login.html')
         

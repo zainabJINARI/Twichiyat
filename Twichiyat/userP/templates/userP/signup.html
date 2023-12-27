@@ -1,9 +1,11 @@
 {% extends 'base_layout.html'%}
 {% block content %}
-<h1>Sign up Page</h1>
-<form class="site-form" action="/userP/signup/" method="post">
-    {% csrf_token %}
-    {{form}}
-    <input type="submit" value="SignUp">
-</form>
+    <h1>Sign up Page</h1>
+    <form class="site-form" action="/userP/signup/" method="post">
+        {% csrf_token %}
+        {{form}}
+        <input type="submit" value="SignUp">
+    </form>
+     <p>Already Have an Account <a href="{% url 'userP:login'%}">LogIn</a></p>
+
 {% endblock %}
