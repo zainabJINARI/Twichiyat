@@ -16,6 +16,6 @@ class Profile(models.Model):
     phone_nbr = models.CharField(max_length=30)
     gender = models.CharField(max_length=50, choices=GENDER_CHOICES, default=Women)
     slugU =  models.SlugField(max_length=50,default=None)
-
+ 
     def __str__(self):
         return self.user.username

@@ -3,12 +3,13 @@
     <h1>Sign up Page</h1>
     <form class="site-form" action="/userP/signup/" method="post">
         {% csrf_token %}
+
         {{form}}
         {% if request.GET.next %}
             <input type="hidden" name="next" value="{{ request.GET.next }}">
         {% endif %}
         <input type="submit" value="SignUp">
     </form>
-     <p>Already Have an Account <a href="{% url 'userP:login'%}">LogIn</a></p>
+     <p>Already Have an Account <a href="{% url 'userP:login' %}">LogIn</a></p>
 
 {% endblock %}

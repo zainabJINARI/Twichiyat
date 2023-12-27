@@ -3,29 +3,47 @@ from .forms import CreateUser,UserCreationForm , AuthenticationForm
 from django.contrib.auth import login
 
 
+from django.shortcuts import render,redirect
+from .forms import CreateUser,UserCreationForm , AuthenticationForm
+from django.contrib.auth import login
+from .models import Profile
+from . import forms
+
+
 # Create your views here.
+
 def signup_view(request):
     if request.method == 'POST':
         form = CreateUser(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
-            if 'next' in request.POST:
-                
-                print(request.POST.get('next'))
-                if request.POST.get('next') =='/dashboard/':
-                    user.is_vendor=True
-                    user.save()
-                    login(request,user)
-                    return redirect('vendor_dashboard:dashboard')
-                else:
-                    #test client
-                    user.save()
-                    login(request,user)
-                    return redirect('home')
-                
+
+            # Enregistrez d'abord l'utilisateur
+            user.save()
+
+            # Créez une instance de Profile et liez-la à l'utilisateur
+            profile = Profile(user=user)
+            profile.is_vendor = True if request.POST.get('next') == '/dashboard/' else False
+            profile.address = form.cleaned_data['address']
+            profile.phone_nbr = form.cleaned_data['phone_nbr']
+            profile.gender = form.cleaned_data['gender']
+            profile.slugU = form.cleaned_data['slugU']
+            profile.save()
+
+            # Connectez l'utilisateur
+            login(request, user)
+
+            # Redirigez en conséquence
+            if profile.is_vendor:
+                return redirect('vendor_dashboard:dashboard')
+            else:
+                return redirect('home')
+
     else:
         form = CreateUser()
-    return render(request,'userP/signup.html',{'form':form})
+
+    return render(request, 'userP/signup.html', {'form': form})
+
 
 
 def login_view(request):
