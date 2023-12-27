@@ -13,6 +13,7 @@
         <div class="logo-container">
           <a href="{% url 'home'%}"> <img src="{% static 'logoHome.png' %}" alt="logoImg"></a> 
         </div>
+<<<<<<< Updated upstream
         <nav class="nav-bar">
             <ul>
                 <li class="nav-elt"><a href="{% url 'Store:shopnow' %}"><span class="hidden"> <i class="fa-solid fa-house" style="color: #342931;"></i></span>Shop</a></li>
@@ -38,6 +39,27 @@
                     
                 {% endif %}
                 <li class="nav-elt"><a href=""><span class="hidden"><i class="fa-solid fa-cart-shopping" style="color: #342931;"></i></span>Cart</a></li>
+=======
+        <nav>
+            <ul>
+                <li><a href="{% url 'Store:shopnow' %}"><span class="hidden"> <i class="fa-solid fa-house" style="color: #5474ab;"></i></span>Shop</a></li>
+                <li><a href=""><span class="hidden"><i class="fa-solid fa-list" style="color: #5d8ddf;"></i></span>Categories</a></li>
+                {% if user.is_authenticated %}
+                    <form action="{% url 'userP:logout' %}" class="logout-link" method="POST">
+                        <!-- log out change action -->
+                        {% csrf_token %}
+                        <button type="submit"><span class="hidden"><i class="fa-solid fa-right-from-bracket" style="color: #4e83df;"></i></span>Logout</button>
+                    </form>
+                    {% if user.is_vendor  %}
+                        <h1>Am here</h1>
+                    {% endif %}
+                {% else %}
+
+                   <li><a href=""><span class="hidden"><i class="fa-solid fa-user" style="color: #4c83e1;"></i></span>LogIn</a></li>
+                    
+                {% endif %}
+                <li><a href=""><span class="hidden"><i class="fa-solid fa-cart-shopping" style="color: #4783eb;"></i></span>Cart</a></li>
+>>>>>>> Stashed changes
             </ul>
         </nav>
 
