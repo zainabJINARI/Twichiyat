@@ -8,10 +8,15 @@ class Product(models.Model) :
       color = models.CharField(max_length=25)
       description = models.TextField(max_length=400)
       image = models.ImageField(default='default.png' , blank=True)
+<<<<<<< Updated upstream:Twichiyat/Store/models.py
       slugP =  models.SlugField(max_length=50,default=None)
+=======
+      #genre
+>>>>>>> Stashed changes:Twichiyat/Products/models.py
       #owner 
       #Reviews 
       #Status
+      
 
       def __str__(self) :
             return  "Type :{0} , Price:{1}".format(self.type_p , self.price)
