@@ -5,9 +5,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product</title>
+    <script src="https://kit.fontawesome.com/de0f1ce5ee.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{% static 'styles.css'%}">
 </head>
 <body>
+    <header class="header">
+        <div class="logo-container">
+          <a href="{% url 'home'%}"> <img src="{% static 'logoHome.png' %}" alt="logoImg"></a> 
+        </div>
+        <nav class="nav-bar">
+            <ul>
+                <li class="nav-elt"><a href="{% url 'Store:shopnow' %}"><span class="hidden"> <i class="fa-solid fa-house" style="color: #342931;"></i></span>Shop</a></li>
+                <li class="nav-elt"><a href=""><span class="hidden"><i class="fa-solid fa-list" style="color: #342931;"></i></span>Categories</a></li>
+                {% if user.is_authenticated %}
+
+                    <form action="{% url 'userP:login' %}" class="nav-elt" method="post">
+                        <!-- log out change action -->
+                        {% csrf_token %}
+                        <button type="submit"><span class="hidden"><i class="fa-solid fa-right-from-bracket" style="color: #342931;"></i></span>Logout</button>
+                    </form>
+              
+                    {% for p in profiles %}
+                         {% if p.user == user %}
+                            {% if p.is_vendor %}
+                                <li class="nav-elt"><a href="{% url 'vendor_dashboard:dashboard'%}">DashBoard</a></li>
+                            {% else %}
+                                <li class="nav-elt"><a href="">WatchList</a></li>
+                            {% endif %}
+                        {% endif %} 
+                    {% endfor %}
+                {% else %}
+                   <li class="nav-elt"><a href="{% url 'userP:login'%}"><span class="hidden"><i class="fa-solid fa-user" style="color: #342931;"></i></span>LogIn</a></li>
+                    
+                {% endif %}
+                <li class="nav-elt"><a href=""><span class="hidden"><i class="fa-solid fa-cart-shopping" style="color: #342931;"></i></span>Cart</a></li>
+            </ul>
+        </nav>
+
+    </header>
     <div class="wrapper">   
         {% block content%}
         {% endblock%}

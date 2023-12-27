@@ -240,6 +240,44 @@ section.about .content,.footer .copy-right{
     color: #342931;
     font-family: 'Rajdhani', sans-serif;
 }
+/* Header style */
+header.header{
+    padding: 1em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #EBE0CD;
+    width: 100%;
+}
+/* logo container */
+.logo-container img{
+    width: 200px;
+
+}
+/* Nav Bar */
+.nav-bar{
+    margin-left: auto;
+}
+.nav-bar ul{
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.nav-bar ul .nav-elt{
+    padding: 0 1em;
+}
+.nav-bar ul li.nav-elt a{
+    text-decoration: none;
+    color: #342931;
+    font-size: 1em;
+}
+/* btn log out */
+.nav-bar ul .nav-elt button{
+    border: none;
+    background-color: transparent;
+}
+
 /*******page login ******/
 body, h1, p, form, label {
     margin: 0;
