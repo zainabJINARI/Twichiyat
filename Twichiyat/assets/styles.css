@@ -1,5 +1,9 @@
 html,body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
     height: 100%;
+    background-color: #f0ebe4;
     font-family: 'Open Sans', sans-serif;
 }
 *,*::after,*::before{
@@ -7,8 +11,9 @@ html,body{
     user-select: none;
 }
 body{
-    margin: 0;
-    padding: 0;
+
+    position: relative;
+    overflow: auto;
 }
 
 /* Load section */
@@ -74,12 +79,12 @@ body .first-load{
 }
 .first-load .container  .btns .shop{
     color: #EBE0CD;
-    background-color:#342931;
+    background-color:#302219;
 }
 .first-load .container  .btns .sell{
-    color: #342931;
+    color: #302219;
     background-color:transparent;
-    border: 1px solid #342931;
+    border: 1px solid #302219;
 }
 
 /* About section style */
@@ -99,7 +104,7 @@ section .title{
     border-radius: 4px;
     max-width: max-content;
     margin: 1em auto 0;
-    color: #342931;
+    color: #62412F;
 }
 section.about .img-container img{
     max-width: 450px;
@@ -107,12 +112,12 @@ section.about .img-container img{
     width: 70%;
     margin:  1em auto 1em 1em;
     border-radius: 10px;
-    box-shadow: 2px 2px 2px #342931;
+    box-shadow: 2px 2px 2px #62412F;
 
 }
 section.about .content{
     padding: 2em 1em;
-    background-color: #EBE0CD;
+    background-color: #CD8761;
     max-width: 450px;
     border-radius: 10px;
     width: 80%;
@@ -149,7 +154,7 @@ section.about .content{
     min-width: 200px;
     width: 100%;
     border-radius: 10px;
-    box-shadow: 2px 2px 2px #342931;
+    box-shadow: 2px 2px 2px #62412F;
     height: 300px;
     flex-basis: 300px;
 }
@@ -159,13 +164,14 @@ section.about .content{
 }
 .popular .categories a{
     text-decoration: none;
-    color: #342931;
+    color: #302219;
     font-size: 1rem;
     font-weight: bold;
 }
 .popular .shop-now{
     text-decoration: none;
-    color: #342931;
+    color: #302219;
+    border: 2px solid #302219;
     background-color: #EBE0CD;
     border-radius: 10px;
     width: 60%;
@@ -173,6 +179,11 @@ section.about .content{
     margin: 1em auto  2em;
     padding: 0.5em 1em;
     font-size: 1.1rem;
+}
+.popular .shop-now:hover{
+    color: whitesmoke;
+    font-weight: 500;
+    background-color: #CD8761;
 }
 .absolute,.right,.bottom,.top{
     display: none;
@@ -209,7 +220,7 @@ section.about .content{
 .what-they-say .feedbacks .feedback .content-feedback img{
     width: 100px;
     border-radius: 50%;
-    border: 2px solid #342931;
+    border: 2px solid #62412F;
     box-shadow: 2px 2px #CACACA;
 }
 .what-they-say .feedbacks .feedback .content-feedback p{
@@ -223,13 +234,17 @@ section.about .content{
 
 /* Footer */
 .footer{
+    position: relative;
     padding: 1em 4em;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #EBE0CD;
+    background-color: #302219;
     font-size: small;
+}
+.footer p{
+    color: #CD8761;
 }
 
 /* Common style */
@@ -237,7 +252,7 @@ section.about .content{
 section.about .content,.footer .copy-right{
     
     text-align: justify;
-    color: #342931;
+    color: #62412F;
     font-family: 'Rajdhani', sans-serif;
 }
 /* Header style */
@@ -246,40 +261,75 @@ header.header{
     display: flex;
     flex-direction: row;
     align-items: center;
-    background-color: #EBE0CD;
+    background-color: #302219;
     width: 100%;
 }
 /* logo container */
 .logo-container img{
-    width: 200px;
+    max-width: 120px;
+    min-width: 90px;
+    width: 100%;
 
 }
 /* Nav Bar */
-.nav-bar{
+ .nav-bar{
     margin-left: auto;
 }
 .nav-bar ul{
     list-style: none;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: flex-end;
 }
 .nav-bar ul .nav-elt{
-    padding: 0 1em;
+    padding: 0 0.5em;
+    font-weight: bold;
+
 }
 .nav-bar ul li.nav-elt a{
     text-decoration: none;
-    color: #342931;
-    font-size: 1em;
+    color: #CD8761;
+    font-size: 1rem;
+    
 }
-/* btn log out */
-.nav-bar ul .nav-elt button{
-    border: none;
+.logout-link button{
     background-color: transparent;
+    color: #CD8761;
+    font-size: 1rem;
+    border: none;
+}
+/* Icons managing */
+.text-hidden{
+    display: none;
+}
+/* login style */
+.wrapper{
+    vertical-align: middle;
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.footer-position{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
 
+.login-container{
+    margin: auto;
+    position: relative;
+    background-color: red;
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+   
+
+}
 /*******page login ******/
-body, h1, p, form, label {
+/* body, h1, p, form, label {
     margin: 0;
     padding: 0;
 }
@@ -350,14 +400,14 @@ p {
 
 .footer img {
     margin-bottom: 10px;
-}
+} */
 
 
 /*******page login ******/
 
 /*******page sign up  ******/
 /* Reset some default browser styles */
-body, h1, p, form, label, input {
+/* body, h1, p, form, label, input {
     margin: 0;
     padding: 0;
 }
@@ -424,7 +474,7 @@ p {
 
 .copy-right {
     color: #777;
-}
+} */
  
 /*******page sign up  ******/
 /* Animations */
@@ -544,6 +594,13 @@ p {
         right: 0;
         bottom: 0;
         
+    }
+    /* Icon manage */
+    .text-hidden{
+        display: inline-block;
+    }
+    .hidden{
+        display: none;
     }
     
     

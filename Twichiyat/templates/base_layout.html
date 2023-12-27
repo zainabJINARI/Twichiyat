@@ -11,34 +11,34 @@
 <body>
     <header class="header">
         <div class="logo-container">
-          <a href="{% url 'home'%}"> <img src="{% static 'logoHome.png' %}" alt="logoImg"></a> 
+          <a href="{% url 'home'%}"> <img src="{% static 'logo.png' %}" alt="logoImg"></a> 
         </div>
-
+        
         <nav class="nav-bar">
             <ul>
-                <li class="nav-elt"><a href="{% url 'Store:shopnow' %}"><span class="hidden"> <i class="fa-solid fa-house" style="color: #342931;"></i></span>Shop</a></li>
-                <li class="nav-elt"><a href=""><span class="hidden"><i class="fa-solid fa-list" style="color: #342931;"></i></span>Categories</a></li>
+                <li class="nav-elt"><a href="{% url 'Store:shopnow' %}"><span class="hidden"> <i class="fa-solid fa-house" style="color: #CD8761;"></i></span><span class="text-hidden">Shop</span></a></li>
+                <li class="nav-elt"><a href=""><span class="hidden"><i class="fa-solid fa-list" style="color: #CD8761;"></i></span><span class="text-hidden">Categories</span></a></li>
                 {% if user.is_authenticated %}
 
                     <form action="{% url 'userP:logout' %}" class="logout-link" method="POST">
                         {% csrf_token %}
-                        <button type="submit"><span class="hidden"><i class="fa-solid fa-right-from-bracket" style="color: #4e83df;"></i></span>Logout</button>
+                        <button type="submit" class="nav-elt"><span class="hidden"><i class="fa-solid fa-right-from-bracket" style="color: #CD8761;"></i></span><span class="text-hidden">Logout</span></button>
                     </form>
               
                     {% for p in profiles %}
                          {% if p.user == user %}
                             {% if p.is_vendor %}
-                                <li class="nav-elt"><a href="{% url 'vendor_dashboard:dashboard'%}">DashBoard</a></li>
+                                <li class="nav-elt"><a href="{% url 'vendor_dashboard:dashboard'%}"><span class="hidden"><i class="fa-solid fa-magnifying-glass" style="color: #CD8761;"></i></span><span class="text-hidden">DashBoard</span></a></li>
                             {% else %}
-                                <li class="nav-elt"><a href="">WatchList</a></li>
+                                <li class="nav-elt"><a href=""><span class="hidden"><i class="fa-sharp fa-regular fa-heart" style="color: #CD8761;"></i></span><span class="text-hidden">WatchList</span></a></li>
                             {% endif %}
                         {% endif %} 
                     {% endfor %}
                 {% else %}
-                   <li class="nav-elt"><a href="{% url 'userP:login'%}"><span class="hidden"><i class="fa-solid fa-user" style="color: #342931;"></i></span>LogIn</a></li>
+                   <li class="nav-elt"><a href="{% url 'userP:login'%}"><span class="hidden"><i class="fa-solid fa-user" style="color: #CD8761;"></i></span><span class="text-hidden">LogIn</span></a></li>
                     
                 {% endif %}
-                <li class="nav-elt"><a href=""><span class="hidden"><i class="fa-solid fa-cart-shopping" style="color: #342931;"></i></span>Cart</a></li>
+                <li class="nav-elt"><a href=""><span><i class="fa-solid fa-cart-shopping" style="color: #CD8761;"></i></span></a></li>
             </ul>
         </nav>
 
@@ -47,8 +47,8 @@
         {% block content%}
         {% endblock%}
     </div>
-    <footer class="footer">
-        <img src="{% static 'logoHome.png' %}" alt="" width="100px">
+    <footer class="footer footer-position">
+        <img src="{% static 'logo.png' %}" alt="" width="100px">
         <p class="copy-right">Copy right @2023</p>
      </footer>
 </body>

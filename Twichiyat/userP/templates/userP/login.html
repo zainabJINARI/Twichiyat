@@ -1,17 +1,20 @@
 {% extends 'base_layout.html'%}
 {% block content %}
-    <h1>Login</h1>
+    <div class="login-container">
+        <h1>Login</h1>
 
-    <form action="{% url 'userP:login'%}"  method="POST">
-        {% csrf_token %}
-        {{ form }}
-        {% if request.GET.next %}
-        <input type="hidden" name="next" value="{{ request.GET.next }}">
-        {% endif %}
-        <input type="submit" value="Login">
+        <form action="{% url 'userP:login'%}"  method="POST">
+            {% csrf_token %}
+            {{ form }}
+            {% if request.GET.next %}
+            <input type="hidden" name="next" value="{{ request.GET.next }}">
+            {% endif %}
+            <input type="submit" value="Login">
+    
+        </form>
+    
+        <p>Don't have an account <a href="{% url 'userP:signup' %}?next={{ request.GET.next }}">SignUp</a></p>
+    </div>
 
-    </form>
-
-    <p>Don't have an account <a href="{% url 'userP:signup' %}?next={{ request.GET.next }}">SignUp</a></p>
 {% endblock %}
 
