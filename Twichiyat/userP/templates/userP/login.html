@@ -2,7 +2,7 @@
 {% block content %}
     <h1>Login</h1>
 
-    <form action="{% url 'UserP:login'%}"  method="POST">
+    <form action="{% url 'userP:login'%}"  method="POST">
         {% csrf_token %}
         {{ form }}
 
@@ -13,6 +13,6 @@
 
     </form>
 
-    <p>Don't have an account <a href="{% url 'userP:signup' %}">SignUp</a></p>
+    <p>Don't have an account <a href="{% url 'userP:signup' %}?next={{ request.GET.next }}">SignUp</a></p>
 {% endblock %}
 

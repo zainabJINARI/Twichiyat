@@ -10,8 +10,18 @@ def signup_view(request):
         if form.is_valid():
             user = form.save(commit=False)
             if 'next' in request.POST:
-                user.is_vendor=True
-                return redirect('home')
+                
+                print(request.POST.get('next'))
+                if request.POST.get('next') =='/dashboard/':
+                    user.is_vendor=True
+                    user.save()
+                    login(request,user)
+                    return redirect('vendor_dashboard:dashboard')
+                else:
+                    user.save()
+                    login(request,user)
+                    return redirect('home')
+                
     else:
         form = CreateUser()
     return render(request,'userP/signup.html',{'form':form})

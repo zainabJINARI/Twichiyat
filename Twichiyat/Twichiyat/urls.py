@@ -9,6 +9,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     re_path(r'^$',views.home_page,name="home"),
     re_path(r'^userP/',include("userP.urls")),
+    re_path(r'^dashboard/',include("vendor_dashboard.urls"))
 ]
 
 urlpatterns += staticfiles_urlpatterns()
