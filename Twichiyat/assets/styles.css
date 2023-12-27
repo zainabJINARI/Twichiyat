@@ -240,9 +240,155 @@ section.about .content,.footer .copy-right{
     color: #342931;
     font-family: 'Rajdhani', sans-serif;
 }
+/*******page login ******/
+body, h1, p, form, label {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ede9e9;
+}
+
+.wrapper {
+    max-width: 400px;
+    margin: 70px auto;
+    background-color:#f6f6f6;
+    padding: 20px;
+    
+}
+h1 {
+    text-align: center;
+    color: #A0522D;
+}
+
+form {
+    margin-top: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #151313;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    background-color: #DEB887;
+    color: #f5f4f4;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #DEB887;
+}
+
+p {
+    text-align: center;
+    margin-top: 20px;
+    color: #555;
+}
+ 
+#id_username_helptext,
+#id_password1_helptext,
+#id_password2_helptext {
+    display: none;
+}
+
+.footer {
+    margin-top: 50px;
+    text-align: center;
+   
+    color: #fff;
+    padding: 10px 0;
+}
+
+.footer img {
+    margin-bottom: 10px;
+}
 
 
+/*******page login ******/
 
+/*******page sign up  ******/
+/* Reset some default browser styles */
+body, h1, p, form, label, input {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+.wrapper {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 40px;
+    background-color: #fff;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+    margin-top: 200px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #A0522D;
+}
+
+.site-form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+input {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+input[type="submit"] {
+    background-color: #DEB887;
+    color: #fff;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #DEB887;
+}
+
+p {
+    text-align: center;
+    margin-top: 20px;
+    color: #777;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.copy-right {
+    color: #777;
+}
+ 
+/*******page sign up  ******/
 /* Animations */
 .reveal {
     position: relative;
