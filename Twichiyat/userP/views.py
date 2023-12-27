@@ -18,6 +18,7 @@ def signup_view(request):
                     login(request,user)
                     return redirect('vendor_dashboard:dashboard')
                 else:
+                    #test client
                     user.save()
                     login(request,user)
                     return redirect('home')
