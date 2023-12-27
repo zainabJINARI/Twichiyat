@@ -52,19 +52,18 @@ def login_view(request):
         if form.is_valid() :
             user=form.get_user()
             login(request , user)
-<<<<<<< Updated upstream
             profiles = Profile.objects.all()
             for p in profiles :
                 if p.is_vendor == True :
                     return redirect('vendor_dashboard:dashboard')
-=======
+
             if user.is_vendor == True :
                 return redirect('vendor_dashboard:dashboard')
             else :
                 if 'next' in request.POST :
                     # return  redirect(request.POST.get('next'))
                     return HttpResponse("Hi")
->>>>>>> Stashed changes
+
                 else :
                     if 'next' in request.POST :
                         return  redirect(request.POST.get('next'))
@@ -76,15 +75,15 @@ def login_view(request):
     else:
         form =AuthenticationForm()
         return render(request,'userP/login.html' , { 'form':form })
-<<<<<<< Updated upstream
+ 
     
     
 def logout_view(request):
     logout(request)
     return redirect('home')       
-=======
+
         
 def logout_view(request):
     logout(request)
     return redirect('home')
->>>>>>> Stashed changes
+
