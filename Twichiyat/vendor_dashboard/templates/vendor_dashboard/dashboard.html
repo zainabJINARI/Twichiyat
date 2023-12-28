@@ -1,12 +1,13 @@
 
 {% extends 'base_layout.html'%}
+{% load static%}
 {% block content %}
 <div class="dashboard-container">
     <div class="options-list">
-        <a href="#" name="Product Area"><span class=""><i class="fa-brands fa-product-hunt" style="color: #CD8761;"></i></span> <span class="text-hidden">Products Area</span> </a>
-        <a href="#" name="Add Product"><span class=""><i class="fa-solid fa-plus" style="color: #CD8761;"></i></span> <span class="text-hidden">Add Product</span></a>
-        <a href="#" name="Update Account"><span class=""><i class="fa-solid fa-user-gear" style="color: #CD8761;"></i></span> <span class="text-hidden"> Update Account</span></a>
-        <a href="#" name="Delete Account"><span class=""><i class="fa-solid fa-user-xmark" style="color: #CD8761;"></i></span> <span class="text-hidden" >Delete Account</span></a>      
+        <a href="{% url 'vendor_dashboard:product_area' %}" name="Product Area"><span class=""><i class="fa-brands fa-product-hunt" style="color: #CD8761;"></i></span> <span class="text-hidden">Products Area</span> </a>
+        <a href="{% url 'vendor_dashboard:add_product' %}" name="Add Product"><span class=""><i class="fa-solid fa-plus" style="color: #CD8761;"></i></span> <span class="text-hidden">Add Product</span></a>
+        <a href="{% url 'vendor_dashboard:updateAccount' %}" name="Update Account"><span class=""><i class="fa-solid fa-user-gear" style="color: #CD8761;"></i></span> <span class="text-hidden"> Update Account</span></a>
+        <a href="#" name="Delete_Account"><span class=""><i class="fa-solid fa-user-xmark" style="color: #CD8761;"></i></span> <span class="text-hidden" >Delete Account</span></a>      
     </div>
     <div class="order-list">
         <div class="order-item">
@@ -25,7 +26,18 @@
             </div>   
         </div>
     </div>
-
+    <div class='delete hidden-div'>
+        <h3>Delete Account:</h3>
+        <p>Are you sure you want to delete the account</p>
+        <div class='delete-btn'>
+            <button class='btn-elet cancel'>Cancel</button>
+            <form method="post" action="{% url 'vendor_dashboard:deleteAccount' %}">
+                {% csrf_token %}
+                <button type="submit" class='btn-elet'>Proceed</button>
+            </form>
+        </div>
+    </div>
 </div>
 
+<script src="{% static 'delete.js' %}"></script>
 {% endblock %}

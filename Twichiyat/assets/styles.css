@@ -15,7 +15,7 @@ body{
     position: relative;
     overflow: auto;
     display: flex;
-      flex-direction: column;
+    flex-direction: column;
 }
 
 /* Load section */
@@ -237,7 +237,7 @@ section.about .content{
 
 /* Footer */
 .footer{
-    position: sticky;
+    margin-top: auto;
     padding: 1em 4em;
     display: flex;
     flex-direction: column;
@@ -250,7 +250,12 @@ section.about .content{
 .footer p{
     color: #CD8761;
 }
+.footer-absolute{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 
+}
 
 /* Common style */
 .what-they-say .feedbacks .feedback .content-feedback p,
@@ -308,16 +313,17 @@ header.header{
     display: none;
 }
 /* login style */
-.login-wrapper,.signup-wrapper{
+.login-wrapper,.signup-wrapper,.update-account-wrapper{
     vertical-align: middle;
-    height: 60%;
     display: flex;
     flex-direction: column;
     width: 100%;
+    padding-bottom: 4em;
+  
 }
 
 
-.login-container,.signup-container{
+.login-container,.signup-container,.update-container{
     margin: auto;
     position: relative;
     width: 100%;
@@ -334,17 +340,18 @@ header.header{
 
 }
 .login-container h1,
-.signup-container h1{
+.signup-container h1,.update-container h1{
     margin-bottom: 0em;
     color: #CD8761;
     letter-spacing: 1px;
     text-shadow: 1px 2px #302219;
 }
-.login-container form,.signup-container form{
+.login-container form,.signup-container form, .update-container form {
     padding: 1em 3em;
    
 }
 .login-container form > div,
+.update-container form > p,
 .signup-container form > div {
     display: flex;
     text-align: start;
@@ -357,18 +364,24 @@ header.header{
     
 }
 .login-container form > div input,
-.signup-container form > div input {
+.signup-container form > div input,.update-container form > p input,.update-container form > p select{
     flex:1;
-    padding: 0.5em;
+    padding: 0.6em;
     margin-top: 1em;
     border-radius: 10px;
     border: 2px solid #62412F;
 }
-.login-container form >input ,
-.signup-container form > input  {
+.update-container form > p select option{
+    width: 100%;
+    max-width: 500px;
+}
+.login-container form > input ,
+.signup-container form > input,
+.update-container form > input{
     margin-top: 2em;
     width: 100%;
-    padding: 0.6em;
+    padding: 0.6em ;
+    /* margin-bottom: 5em; */
     border-radius: 10px;
     color: rgb(228, 182, 157);
     font-size: 1em;
@@ -377,7 +390,7 @@ header.header{
     text-shadow: #CD8761;
 
 }
-.login-container form >input:hover,.signup-container form > input:hover{
+.login-container form >input:hover,.signup-container form > input:hover,.update-container form >input:hover{
     cursor: pointer;
     font-size: 1.025em;
     background-color: #62412F;
@@ -388,6 +401,7 @@ header.header{
     font-weight: lighter;
     color: #62412F;
     font-size: small;
+    margin-bottom: 9em;
 }
 
 .login-container p a,.signup-container p a{
@@ -406,13 +420,21 @@ header.header{
     color: red;
     font-size: 0.7rem;
 }
+/* update account */
+.update-btn{
+    margin-bottom: 5em
+}
 /* Dashboard style */
 .dashboard-container{
+    position: relative;
     display: flex;
     flex-direction: column;
     height: 100%;
+    width: 100%;
     
 }
+
+
 
 .dashboard-container .options-list{
     padding: 2em ;
@@ -463,6 +485,60 @@ header.header{
     text-align: center;
     text-decoration: none;
     font-weight: bold;
+}
+/* delete message */
+.delete{
+    position: fixed;
+    top: 25%;
+    left: 25%;
+    right: 25%;
+    background-color: #966951;
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    text-align: center; 
+    border-radius: 5px;
+    text-align: center;
+    font-family: 'Barlow', sans-serif;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.delete h3{
+    color: #CACACA;
+    letter-spacing: 1px;
+    text-shadow: 1px 2px #302219;
+}
+
+.delete .delete-btn{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+}
+.delete .delete-btn .btn-elet{
+    padding: 0.7em 3em;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    color: #302219;
+    background-color: #f0ebe4;
+}
+
+.delete-btn button:first-child:hover{
+    background-color: #302219;
+    color: white;
+}
+
+.delete-btn .btn-elet:nth-child(2):hover{
+    background-color: rgb(202, 72, 72);
+    color: whitesmoke;
+}
+/* dashboard delete hidden */
+.hidden-div{
+    display: none;
 }
 
 /* Animations */
@@ -649,6 +725,202 @@ header.header{
    
     
     
+}
+
+
+/* Hanane Area  */
+/* Area_product Css  */
+.board{
+    width: 94%;
+    margin: 40px 30px 30px 30px ;
+    overflow: auto;
+    border-radius: 8px;
+    
+}
+.board img {
+    width:45px ;
+    height: 45px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 15px;
+
+}
+.board h5 {
+    font-weight: 600;
+    font-size: 13px;
+    color:#966951 ;
+}
+
+.board p {
+    font-weight: 400;
+    font-size: 13px;
+    color: #CACACA;
+}
+
+.board .product {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: start;
+}
+
+table{
+    border-collapse: collapse;
+}
+
+tr{
+  border-bottom:  1px solid #CACACA;
+}
+
+thead td{
+    font-size: 14px ;
+    text-transform: uppercase;
+    font-weight: 400;
+    background-color: #966951;
+    text-align: start;
+    padding: 15px;
+}
+
+.status select {
+    background-color:#CACACA ;
+    color:#302219 ;
+}
+
+.edit a {
+    text-decoration: none;
+    font-size: 14px;
+    color: #302219 ;
+    font-weight:600 ;
+}
+
+
+/* Add product css */
+.new_product_wrapper{
+    margin: auto;
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-family: 'Barlow', sans-serif;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.new_product_wrapper header {
+    font-size: 22px;
+    font-weight: 600;
+    border-bottom: 1px solid #62412F;
+    margin-bottom: 0em;
+    color: #CD8761;
+    letter-spacing: 1px;
+    text-shadow: 1px 2px #302219;
+    text-align: center;
+    padding: 20px 30px;
+}
+
+.new_product_wrapper form{
+   margin: 35px 30px ;
+}
+
+form .dbl-fields{
+     display: flex;
+     align-items: center;
+     margin-bottom: 25px;
+     justify-content:space-between;
+}
+.dbl-fields .field {
+    height: 50px ;
+    width: calc(100% / 2 - 13px );
+    color:#62412F;
+    font-size: 18px;
+    
+} 
+form .field input  , form .description textarea{
+     height: 100%;
+     width: 100%;
+     outline: none;
+     padding: 0 18px;
+     font-size: 16px;
+     border-radius: 5px;
+     border: 1px solid #966951 ;
+}
+
+form .image , form .description{
+    color:#62412F;
+    font-size: 18px;
+    margin-bottom: 25px;
+}
+
+
+form .image {
+    padding: 25px 0 0 0;
+    align-items: center;
+}
+
+form .image input{
+    color:#62412F;
+    font-size: 18px;
+    background-color: #EBE0CD;
+}
+
+form .field select {
+    height: 100%;
+    width: 100%; color:#62412F;
+    font-size: 16px;
+}
+
+form .description textarea {
+    min-width:100% ;
+    max-width: 100%;
+    min-height:120px ;
+    max-height: 300px;
+    padding: 15px 20px 0 48px ;
+
+}
+
+
+form .field input  , form .field textarea {
+    border: 2px solid #302219;
+}
+
+form .button-area {
+    margin: 25px 0 ;
+    text-align: center;
+}
+
+.button-area button {
+    width: 30%;
+    font-size: 18px;
+    padding:  13px 25px;
+    color :#EBE0CD ;
+    background-color:  #966951;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+@media (max-width:600px) {
+    .new_product_wrapper header {
+        text-align: center;   
+    }
+
+    form .dbl-fields {
+         flex-direction: column;
+    }
+    .dbl-fields .field {
+        width: 100%;
+        margin-bottom: 20px;
+
+    }
+    .button-area button {
+        width: 100%;
+
+    }
+    form .button-area {
+           flex-direction: column;
+    }
 }
 
 

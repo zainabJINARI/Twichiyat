@@ -5,7 +5,7 @@ from django.http import HttpResponse
 
 
 from django.shortcuts import render,redirect
-from .forms import CreateUser,UserCreationForm , AuthenticationForm
+from .forms import CreateUser , AuthenticationForm
 from django.contrib.auth import login , logout
 from .models import Profile
 from . import forms
@@ -83,7 +83,5 @@ def logout_view(request):
     return redirect('home')       
 
         
-def logout_view(request):
-    logout(request)
-    return redirect('home')
+
 

@@ -1,0 +1,38 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+
+<div class="new_product_wrapper">
+  <header>Add Product</header>
+        <form action="{% url 'vendor_dashboard:add_product' %}"  method="post" enctype="multipart/form-data">
+
+            {% csrf_token %}
+            <div class="dbl-fields">
+                    <div class="field">
+                        Type {{ form.product_type }}
+                    </div>
+                    <div class="field">
+                       Price {{ form.price }}
+                    </div>
+            </div>
+            <div class="dbl-fields">
+                    <div class="field">
+                        Size {{ form.size }}
+                    </div>
+                    <div class="field">
+                        Color {{ form.color }}
+                    </div>
+            </div>
+            <div class="image">
+                load image {{ form.image }}
+            </div>
+            <div class="description">
+                Description {{ form.description }}
+            </div>
+            <div class="button-area"> 
+                <button type="submit" >Create</button>
+            </div>
+        </form>
+
+</div>
+{% endblock %}
