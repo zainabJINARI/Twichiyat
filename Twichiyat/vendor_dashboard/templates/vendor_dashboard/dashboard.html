@@ -1,11 +1,31 @@
-<<<<<<< Updated upstream
+
 {% extends 'base_layout.html'%}
 {% block content %}
+<div class="dashboard-container">
+    <div class="options-list">
+        <a href="#" name="Product Area"><span class=""><i class="fa-brands fa-product-hunt" style="color: #CD8761;"></i></span> <span class="text-hidden">Products Area</span> </a>
+        <a href="#" name="Add Product"><span class=""><i class="fa-solid fa-plus" style="color: #CD8761;"></i></span> <span class="text-hidden">Add Product</span></a>
+        <a href="#" name="Update Account"><span class=""><i class="fa-solid fa-user-gear" style="color: #CD8761;"></i></span> <span class="text-hidden"> Update Account</span></a>
+        <a href="#" name="Delete Account"><span class=""><i class="fa-solid fa-user-xmark" style="color: #CD8761;"></i></span> <span class="text-hidden" >Delete Account</span></a>      
+    </div>
+    <div class="order-list">
+        <div class="order-item">
+            <div class="infor-order">
+                <h5>Ordered :<span class="name-order">jjifjsoieso</span></h5>
+                <p class="order-date">12-13-2023</p>
+                <p>Quantite :</p>
+                <p>Totale Price</p>
+                <p>Ordered By John Smit</p>
+                <p>Phone Number</p>
+            </div>
+            <div class="order-options">
+                <a href="#"><span class="icon-order"><i class="fa-solid fa-circle-info" style="color: #CD8761;"></i></span>  <span class="text-hidden">Details</span> </a>
+                <a href="#"><span class="icon-order"><i class="fa-solid fa-circle-check" style="color: #CD8761;"></i></span>  <span class="text-hidden">Approve</span></a>
+                <a href="#"><span class="icon-order"><i class="fa-solid fa-xmark" style="color: #CD8761;"></i></span>  <span class="text-hidden">Cancel</span></a>
+            </div>   
+        </div>
+    </div>
 
-=======
+</div>
 
-{% extends 'base_layout.html' %}
-{% block content %}
->>>>>>> Stashed changes
-<h1>Dashboard</h1>
 {% endblock %}

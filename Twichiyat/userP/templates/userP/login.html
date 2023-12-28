@@ -1,17 +1,21 @@
 {% extends 'base_layout.html'%}
+<div class="login-wrapper"> 
 {% block content %}
-    <h1>Login</h1>
+    <div class="login-container">
+        <h1>Log In</h1>
+        <form action="{% url 'userP:login'%}"  method="POST">
+            {% csrf_token %}
+            {{ form }}
+            {% if request.GET.next %}
+            <input type="hidden" name="next" value="{{ request.GET.next }}">
+            {% endif %}
+            <input type="submit" value="Login">
+    
+        </form>
+    
+        <p>Don't have an account <a href="{% url 'userP:signup' %}?next={{ request.GET.next }}"><span class="sign-up"> SignUp</span></a></p>
+    </div>
 
-    <form action="{% url 'userP:login'%}"  method="POST">
-        {% csrf_token %}
-        {{ form }}
-        {% if request.GET.next %}
-        <input type="hidden" name="next" value="{{ request.GET.next }}">
-        {% endif %}
-        <input type="submit" value="Login">
-
-    </form>
-
-    <p>Don't have an account <a href="{% url 'userP:signup' %}?next={{ request.GET.next }}">SignUp</a></p>
 {% endblock %}
+</div>
 
