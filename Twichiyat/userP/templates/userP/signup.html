@@ -1,9 +1,10 @@
 {% extends 'base_layout.html'%}
+<div class="signup-wrapper"> 
 {% block content %}
-    <h1>Sign up Page</h1>
+   <div class="signup-container">
+    <h1>Sign up</h1>
     <form class="site-form" action="/userP/signup/" method="post">
         {% csrf_token %}
-
         {{form}}
         {% if request.GET.next %}
             <input type="hidden" name="next" value="{{ request.GET.next }}">
@@ -11,5 +12,6 @@
         <input type="submit" value="SignUp">
     </form>
      <p>Already Have an Account <a href="{% url 'userP:login' %}">LogIn</a></p>
-
+  </div>
 {% endblock %}
+</div>

@@ -1,8 +1,8 @@
 {% extends 'base_layout.html'%}
+<div class="login-wrapper"> 
 {% block content %}
     <div class="login-container">
-        <h1>Login</h1>
-
+        <h1>Log In</h1>
         <form action="{% url 'userP:login'%}"  method="POST">
             {% csrf_token %}
             {{ form }}
@@ -13,8 +13,9 @@
     
         </form>
     
-        <p>Don't have an account <a href="{% url 'userP:signup' %}?next={{ request.GET.next }}">SignUp</a></p>
+        <p>Don't have an account <a href="{% url 'userP:signup' %}?next={{ request.GET.next }}"><span class="sign-up"> SignUp</span></a></p>
     </div>
 
 {% endblock %}
+</div>
 

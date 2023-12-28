@@ -14,6 +14,8 @@ body{
 
     position: relative;
     overflow: auto;
+    display: flex;
+      flex-direction: column;
 }
 
 /* Load section */
@@ -190,6 +192,7 @@ section.about .content{
 }
 
 /* Opinions of users */
+
 .what-they-say{
     position: relative;
     display: flex;
@@ -234,7 +237,7 @@ section.about .content{
 
 /* Footer */
 .footer{
-    position: relative;
+    position: sticky;
     padding: 1em 4em;
     display: flex;
     flex-direction: column;
@@ -242,10 +245,12 @@ section.about .content{
     align-items: center;
     background-color: #302219;
     font-size: small;
+    box-shadow: 2px 2px #62412F;
 }
 .footer p{
     color: #CD8761;
 }
+
 
 /* Common style */
 .what-they-say .feedbacks .feedback .content-feedback p,
@@ -303,185 +308,168 @@ header.header{
     display: none;
 }
 /* login style */
-.wrapper{
+.login-wrapper,.signup-wrapper{
     vertical-align: middle;
     height: 60%;
     display: flex;
     flex-direction: column;
     width: 100%;
 }
-.footer-position{
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-}
 
-.login-container{
+
+.login-container,.signup-container{
     margin: auto;
     position: relative;
-    background-color: red;
     width: 100%;
     max-width: 600px;
     display: flex;
     flex-direction: column;
     text-align: center;
+    font-family: 'Barlow', sans-serif;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    /* border: 1px solid #302219; */
+
+}
+.login-container h1,
+.signup-container h1{
+    margin-bottom: 0em;
+    color: #CD8761;
+    letter-spacing: 1px;
+    text-shadow: 1px 2px #302219;
+}
+.login-container form,.signup-container form{
+    padding: 1em 3em;
    
-
 }
-/*******page login ******/
-/* body, h1, p, form, label {
-    margin: 0;
-    padding: 0;
-}
+.login-container form > div,
+.signup-container form > div {
+    display: flex;
+    text-align: start;
+    flex-direction: column;
+    margin: 1em auto;
+    width: 100%;
+    color: #CD8761;
+    font-weight: bold;
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #ede9e9;
-}
-
-.wrapper {
-    max-width: 400px;
-    margin: 70px auto;
-    background-color:#f6f6f6;
-    padding: 20px;
     
 }
-h1 {
-    text-align: center;
-    color: #A0522D;
+.login-container form > div input,
+.signup-container form > div input {
+    flex:1;
+    padding: 0.5em;
+    margin-top: 1em;
+    border-radius: 10px;
+    border: 2px solid #62412F;
 }
-
-form {
-    margin-top: 20px;
-}
-
-label {
-    display: block;
-    margin-bottom: 5px;
-    color: #151313;
-}
-
-input {
+.login-container form >input ,
+.signup-container form > input  {
+    margin-top: 2em;
     width: 100%;
-    padding: 8px;
-    margin-bottom: 15px;
-    box-sizing: border-box;
-}
+    padding: 0.6em;
+    border-radius: 10px;
+    color: rgb(228, 182, 157);
+    font-size: 1em;
+    background-color: #62412F;
+    font-weight: bold;
+    text-shadow: #CD8761;
 
-input[type="submit"] {
-    background-color: #DEB887;
-    color: #f5f4f4;
+}
+.login-container form >input:hover,.signup-container form > input:hover{
     cursor: pointer;
+    font-size: 1.025em;
+    background-color: #62412F;
+    color: whitesmoke;
+    
+}
+.login-container p,.signup-container p{
+    font-weight: lighter;
+    color: #62412F;
+    font-size: small;
 }
 
-input[type="submit"]:hover {
-    background-color: #DEB887;
+.login-container p a,.signup-container p a{
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-decoration: none;
+    color:#CD8761;
 }
-
-p {
-    text-align: center;
-    margin-top: 20px;
-    color: #555;
-}
- 
-#id_username_helptext,
-#id_password1_helptext,
-#id_password2_helptext {
+/* sign up */
+.helptext{
     display: none;
 }
-
-.footer {
-    margin-top: 50px;
-    text-align: center;
-   
-    color: #fff;
-    padding: 10px 0;
-}
-
-.footer img {
-    margin-bottom: 10px;
-} */
-
-
-/*******page login ******/
-
-/*******page sign up  ******/
-/* Reset some default browser styles */
-/* body, h1, p, form, label, input {
-    margin: 0;
+.errorlist{
     padding: 0;
+    list-style: none;
+    color: red;
+    font-size: 0.7rem;
 }
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-}
-
-.wrapper {
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 40px;
-    background-color: #fff;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
-    border-radius: 30px;
-    margin-top: 200px;
-}
-
-h1 {
-    text-align: center;
-    margin-bottom: 30px;
-    color: #A0522D;
-}
-
-.site-form {
+/* Dashboard style */
+.dashboard-container{
     display: flex;
     flex-direction: column;
+    height: 100%;
+    
 }
 
-label {
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: #555;
+.dashboard-container .options-list{
+    padding: 2em ;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
-
-input {
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
+.dashboard-container .options-list a{
+    padding: 0.5em;
+    text-decoration: none;
+    color: #CD8761;
+    border: 2px solid #CD8761;
     border-radius: 5px;
+    box-shadow: 2px 2px #966951;
+    font-weight: bold;
+    
 }
 
-input[type="submit"] {
-    background-color: #DEB887;
-    color: #fff;
-    cursor: pointer;
-}
+.dashboard-container .order-list{
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
 
-input[type="submit"]:hover {
-    background-color: #DEB887;
 }
+.dashboard-container .order-list .order-item{
+    display: flex;
+    flex-direction: row;
+    max-width: 900px;
+    width: 100%;
+    align-self: center;
+    border: 1px solid red;
 
-p {
+    
+
+}
+.dashboard-container .order-list .order-item .infor-order{
+    flex:1;
+
+}
+.dashboard-container .order-list .order-item .order-options{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.dashboard-container .order-list .order-item .order-options a{
+    color: #CD8761;
+    padding: 0.5em;
     text-align: center;
-    margin-top: 20px;
-    color: #777;
+    text-decoration: none;
+    font-weight: bold;
 }
 
-.footer {
-    text-align: center;
-    margin-top: 40px;
-}
-
-.copy-right {
-    color: #777;
-} */
- 
-/*******page sign up  ******/
 /* Animations */
 .reveal {
     position: relative;
     opacity: 0;
-  }
+}
   
 .reveal.active {
     opacity: 1;
@@ -602,7 +590,25 @@ p {
     .hidden{
         display: none;
     }
-    
+    .dashboard-container{
+        display: flex;
+        flex-direction: row;
+
+        
+    }
+    .dashboard-container .order-list{
+        flex:1;
+    }
+    .dashboard-container .options-list{
+        display: flex;
+        flex-direction: column;
+        margin: auto 0;
+        
+    }
+    .dashboard-container .options-list a{
+        margin: 1em 0.1em;
+        text-align: center;
+    }
     
 
 }
