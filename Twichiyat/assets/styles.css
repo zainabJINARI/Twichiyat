@@ -231,10 +231,212 @@ section.about .content{
     font-size: 0.7rem;
 
 }
-.bold{
-    font-weight: bold;
+.section {
+    text-align: center;
 }
 
+.column1 {
+    width: 100%;
+    padding: 2em;
+    margin: 100px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.row1 {
+    width: 100%;
+    margin: 1em auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.row1 * {
+    margin: auto;
+}
+
+.row1 h4 {
+    
+    color: #8B4513;
+   
+}
+
+.image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* or use "cover" if you want the image to cover the container */
+    transition: transform 0.3s ease-in-out;
+}
+
+.image:hover {
+    transform: scale(1.1); /* Adjust the scale factor as needed */
+}
+
+@media only screen and (min-width: 500px) {
+    .column1  {
+        display: flex;
+        flex-direction: row;
+    }
+}
+
+/**carte Page**/
+.cart-page{
+    margin: 80px auto;
+    
+}
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+.cart-info{
+     display: flex;
+     flex-wrap: wrap;
+}
+th {
+    text-align: left;
+    padding: 5px;
+    color: #fff;
+    background-color: #D2691E;
+    font-weight: normal;
+}
+td{
+    padding: 10px 5px;
+}
+td input {
+    width: 40px;
+    height: 30px;
+    padding: 5px;
+}
+td a {
+    color: #ff523b;
+    font-size: 12px;
+}
+td img{
+    width: 80px;
+    height: 80px;
+    margin-right: 10px;
+}
+.total-Price{
+    display: flex;
+    justify-content: flex-end;
+}
+.total-Price table  {
+    border-top: 3px solid #ff523b;
+    width: 100%;
+    max-width: 400px;
+
+}
+td:last-child{
+    text-align: right;
+}
+td:last-child{
+    text-align: right;
+}
+
+/***********/
+.categories .box-container{
+    border :0px solid;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(30rem,1fr));
+    gap: 1.5rem;
+}
+.categories .box-container .box{
+   padding: 3rem 0;
+   background: #fff;
+   border-radius: 5rem;
+   box-shadow: var(--box-shadow);
+   outline: var(--outline);
+   outline-offset: -1rem;
+   text-align: center;
+}
+
+.categories .box-container .box:hover{
+   box-shadow: 1px 1px 10px 4px bar(--green);
+}
+
+.categories .box-container .box img{
+    margin : 1rem 0;
+    height: 15rem;
+ } 
+
+ .categories .box-container .box h3{
+    font-size: 2rem;
+    color: var(--b);
+    line-height: 1.8;
+ } 
+ .categories .box-container .box p{
+    font-size: 2rem;
+    color: var(--b);
+    line-height: 1.8;
+ } 
+
+.small-img-row{
+    display:flex;
+    justify-content: space-between;
+}
+.small-img-col{
+    flex-basis: 24%;
+    cursor: pointer;
+}
+.cart-page{
+    margin: 80px auto;
+
+}
+.table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Style pour centrer la boîte de dialogue modale */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+  }
+  
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+  }
+  
+  /* Style pour le bouton de confirmation à l'intérieur de la boîte de dialogue modale */
+  #confirmDelete {
+    background-color: #CD8761;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  #confirmDelete:hover {
+    background-color: #964e2c;
+  }
+  
+  /* Style pour le bouton de fermeture de la boîte de dialogue modale */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
 /* Footer */
 .footer{
     position: sticky;

@@ -33,6 +33,7 @@ function reveal() {
       }
     }
   }
-  
   window.addEventListener("scroll", reveal);
   
+// deleteAccount.js
+

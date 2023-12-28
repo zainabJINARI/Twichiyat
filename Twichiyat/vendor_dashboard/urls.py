@@ -3,5 +3,6 @@ from . import views
 
 app_name='vendor_dashboard'
 urlpatterns = [
-    re_path(r'^$',views.dashboard_home,name="dashboard")
+    re_path(r'^$',views.dashboard_home,name="dashboard"),
+    
 ]

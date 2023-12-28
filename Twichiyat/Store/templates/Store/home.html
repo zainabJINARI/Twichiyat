@@ -1,7 +1,23 @@
 {% extends 'base_layout.html' %}
+{%load static %}
 
 {% block content %}
-<h1>Shop</h1>
+		<section>
+			<div class="column1 ">
+				<div class="row1">
+                  <img src="{% static 's1.png' %}" class="image" >
+				  <h4><p>jackets</p></h4>
+				</div>
+                <div class="row1">
+					<img src="{% static 'b1.png' %}" class="image" >
+					<h4><p>Dresses</p></h4>
+				  </div>
+				<div class="row1">
+					<img src="{% static 'bag1.png' %}" class="image">
+					<h4><p>Bags</p></h4>
+				  </div>
+ 
+			</div>
 
-
-{% endblock %}
+		</section>
+{% endblock  %}
