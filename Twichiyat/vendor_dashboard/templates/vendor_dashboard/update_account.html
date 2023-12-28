@@ -1,0 +1,15 @@
+
+{% extends 'base_layout.html'%}
+{% block content %}
+    <div class="update-account-wrapper">
+        <div class="update-container">
+            <h1>Update Account</h1>
+            <form class="site-form"  method="post">
+                {% csrf_token %}
+                {{ user_form.as_p }}
+                {{ profile_form.as_p }}
+                <input type="submit" value="Update Account" class="update-btn">
+            </form>
+          </div>
+    </div>
+{% endblock %}
