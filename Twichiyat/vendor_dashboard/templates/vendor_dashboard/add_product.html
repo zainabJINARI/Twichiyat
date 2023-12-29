@@ -6,6 +6,14 @@
         <form action="{% url 'vendor_dashboard:add_product' %}"  method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="field">
+                <label for="">Name </label>
+                {{ form.name }}
+            </div>
+            <div class="field">
+                <label for="">Quantity </label>
+                {{ form.quantity }}
+            </div>
+            <div class="field">
                 <label for="">Type </label>
                 {{ form.product_type }}
             </div>
@@ -22,7 +30,7 @@
                 {{ form.color }}
             </div>
             <div class="image">
-                <label for="">load image</label>
+                <label for="">Load image</label>
                 {{ form.image }}
             </div>
             <div class="description">

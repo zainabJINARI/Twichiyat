@@ -61,7 +61,7 @@ def delete_account(request):
   
 @login_required(login_url="/userP/login")  
 def product_area(request) :
-    products = Product.objects.all() 
+    products = Product.objects.filter(author=request.user)
     return render(request , 'vendor_dashboard/product_area.html',{'products' :products})
 
 @login_required(login_url="/userP/login")
@@ -108,5 +108,6 @@ def delete_product(request):
         return redirect('vendor_dashboard:product_area')
     else:
         return HttpResponse("<h1>Invalid method</h1>")
+    
 
     

@@ -1,13 +1,8 @@
 from django.db import models
+from django.db import models
+import datetime
+from django.contrib.auth.models import User
 
-# Create your models here.
-class Product(models.Model) :
-      type_p = models.CharField(max_length=25)
-      price = models.IntegerField()
-      size = models.CharField(max_length=4)
-      color = models.CharField(max_length=25)
-      description = models.TextField(max_length=400)
-      image = models.ImageField(default='default.png' , blank=True)
 
         
 class Collection(models.Model):

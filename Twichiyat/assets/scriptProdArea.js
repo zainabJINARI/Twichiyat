@@ -1,10 +1,13 @@
 const nav_search = document.querySelector('.nav-dashboard-search')
 const btnSearch = document.querySelector('a[name="ProductArea"]')
 const deleteBtn = document.querySelector('a[name="Delete_Product"]');
+
 const deleteMessage = document.querySelector('div[class="delete hidden-div"]');
 const cancelBtn = document.querySelector('button[class="btn-elet cancel"]');
 const tr_product= document.querySelectorAll(".tr_product");
 const deleteForm = document.getElementById('deleteForm');
+const deleteOneProduct = document.querySelector('a[name="Delete_Oneproduct"]');
+
 btnSearch.addEventListener('click',()=>{
     nav_search.classList.toggle('affiche')
 })
@@ -32,7 +35,6 @@ function CancelFun(e) {
 
 
 deleteForm.addEventListener('click', (e) => {
-
     e.preventDefault();
     const selectedIds = [];
     const selectedProducts = document.querySelectorAll('.selected-item');
@@ -51,3 +53,10 @@ deleteForm.addEventListener('click', (e) => {
     });
     deleteForm.submit();
 });
+
+
+deleteOneProduct.addEventListener('click', (e) => {
+    e.preventDefault();
+    deleteMessage.classList.toggle('hidden-div');
+    container.style.opacity = 0.6;
+})

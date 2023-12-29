@@ -61,7 +61,10 @@ def login_view(request):
             error_str = str(errors)
             errors=error_str.split("'")[3]
             form =AuthenticationForm()
-            return render(request,'userP/login.html' , { 'form':form ,'errors': errors})
+            if 'next' in request.POST:
+                print(request.POST)
+                request.GET.get('next', request.POST.get('next')) 
+                return render(request, 'userP/login.html', {'form': form, 'errors': errors, 'next_param': request.POST.get('next')})
        
     else:
         form =AuthenticationForm()

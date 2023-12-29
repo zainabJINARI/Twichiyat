@@ -3,7 +3,7 @@
 {% block content %}
     <div class="login-container">
         <h1>Log In</h1>
-        <form action="{% url 'userP:login'%}"  method="POST">
+        <form action="{% url 'userP:login'%}?next={{ request.GET.next }}"  method="POST">
             {% csrf_token %}
             {{ form }}
             {% if request.GET.next %}

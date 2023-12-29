@@ -1,7 +1,40 @@
 {% extends 'base_layout.html' %}
 
+{%load static %}
+
 {% block content %}
-<h1>Shop</h1>
+		<h2 class="shop-titles">New Products</h2>
+		<section class="new-products-list">
+			{% for product in products %}
+				<a class="product" href="{% url 'Store:product_detail' product_id=product.id %} ">
+					   
+						<img src="{{ product.image.url }}"  alt="product image ">
+						<h3>Product :{{ product.name}}</h3>
+						<h5>{{ product.price}} $</h5>
+						<ul class="list-review">
+							<li><i class="fa fa-star checkes"></i></li>
+							<li><i class="fa fa-star checkes"></i></li>
+							<li><i class="fa fa-star checkes"></i></li>
+							<li><i class="fa fa-star "></i></li>
+							<li><i class="fa fa-star "></i></li>
+						</ul>
+						
+				</a>
+			{% endfor %}
+		
+		</section>
+		<h2 class="shop-titles">Shop By Categories</h2>
+		<section class="categories-container-list">
+			{% for collection in collections %}
+			<div class="categorie">
+				
+					<a class="row1" href="{% url 'Store:product_category' category_id=collection.id %}">
+						<img src="{{ collection.image_col.url }}" alt="" />
+						<h4>{{ collection.name }}</h4>
+				  	</a>
+				
+			</div>
+			{% endfor %}
+		</section>
+{% endblock  %}
 
-
-{% endblock %}

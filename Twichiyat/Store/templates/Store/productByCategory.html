@@ -1,0 +1,24 @@
+{% extends 'base_layout.html' %}
+
+{%load static %}
+{% block content %}
+<h2 class="shop-titles">All Products of  {{ category }}</h2>
+		<section class="new-products-list margin">
+            
+			{% for product in products %}
+				<a class="product override" href="{% url 'Store:product_detail' product_id=product.id %} ">
+						<img src="{{ product.image.url }}"  alt="product image ">
+						<h3>Product :{{ product.name}}</h3>
+						<h5>{{ product.price}} $</h5>
+						<ul class="list-review">
+							<li><i class="fa fa-star checkes"></i></li>
+							<li><i class="fa fa-star checkes"></i></li>
+							<li><i class="fa fa-star checkes"></i></li>
+							<li><i class="fa fa-star "></i></li>
+							<li><i class="fa fa-star "></i></li>
+						</ul>
+                </a>
+			{% endfor %}
+		
+		</section>
+{% endblock  %}

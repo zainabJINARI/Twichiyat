@@ -1,7 +1,6 @@
-from django import forms 
-from . import models
 from django import forms
 from .models import Product
+from Store.models import Collection
 
 class UpdateProduct(forms.ModelForm):
     STATUS_CHOICES = [
@@ -11,10 +10,12 @@ class UpdateProduct(forms.ModelForm):
     ]
 
     status = forms.ChoiceField(choices=STATUS_CHOICES, widget=forms.Select(attrs={'style': 'overflow: auto;'}), initial='available')
-
+   
+    
+    
     class Meta:
         model = Product
-        fields = ['product_type', 'price', 'size', 'color', 'image', 'description', 'status']
+        fields = ['name', 'quantity','product_type', 'price', 'size', 'color', 'image', 'description', 'status']
 
     color_choices = [
         ('red', 'Red'),
@@ -31,29 +32,31 @@ class UpdateProduct(forms.ModelForm):
         ('XXL', 'Double Extra Large'),
         ('3XL', 'Triple Extra Large'),
     ]
-    type_choices = [
-        ('dress', 'Dress'),
-        ('jacket', 'Jacket'),
-        ('shirt', 'Shirt'),
-        ('pants', 'Pants'),
-        # Add more choices as needed
-    ]
 
+    type_choices =[]
+    for i in Collection.objects.all():
+        type_choices.append((str(i),str(i)))
+    
+    name = forms.CharField(max_length=255, widget=forms.TextInput(attrs={'style': 'overflow: auto;'}))
+    quantity = forms.IntegerField(widget=forms.NumberInput(attrs={'style': 'overflow: auto;'}))
     color = forms.ChoiceField(choices=color_choices, widget=forms.Select(attrs={'style': 'overflow: auto;'}))
     size = forms.ChoiceField(choices=size_choices, widget=forms.Select(attrs={'style': 'overflow: auto;'}))
     product_type = forms.ChoiceField(choices=type_choices, widget=forms.Select(attrs={'style': 'overflow: auto;'}))
 
+    # New fields
+    
 
 
-class CreateProduct(forms.ModelForm) :
-    class Meta :
-        model = models.Product 
-        fields =['product_type' , 'price' , 'size' , 'color' , 'image' , 'description']  
+class CreateProduct(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ['name', 'quantity','product_type', 'price', 'size', 'color', 'image', 'description']
+
     color_choices = [
         ('red', 'Red'),
         ('blue', 'Blue'),
         ('yellow', 'Yellow'),
-        # Ajoutez d'autres choix au besoin
+        # Add more choices as needed
     ]
     size_choices = [
         ('XS', 'Extra Small'),
@@ -64,14 +67,15 @@ class CreateProduct(forms.ModelForm) :
         ('XXL', 'Double Extra Large'),
         ('3XL', 'Triple Extra Large'),
     ]
-    type_choices = [
-        ('dress', 'Dress'),
-        ('jacket', 'Jacket'),
-        ('shirt', 'Shirt'),
-        ('pants', 'Pants'),
-        # Add more choices as needed
-    ]
-
-    color = forms.ChoiceField(choices=color_choices, widget=forms.Select(attrs={'style': 'overflow: auto;'}))  
-    size = forms.ChoiceField(choices=size_choices, widget=forms.Select(attrs={'style': 'overflow: auto;'})) 
+    type_choices =[]
+    for i in Collection.objects.all():
+        type_choices.append((str(i),str(i)))
+    print(type_choices)
+    name = forms.CharField(max_length=255, widget=forms.TextInput(attrs={'style': 'overflow: auto;'}))
+    quantity = forms.IntegerField(widget=forms.NumberInput(attrs={'style': 'overflow: auto;'}))
+    color = forms.ChoiceField(choices=color_choices, widget=forms.Select(attrs={'style': 'overflow: auto;'}))
+    size = forms.ChoiceField(choices=size_choices, widget=forms.Select(attrs={'style': 'overflow: auto;'}))
     product_type = forms.ChoiceField(choices=type_choices, widget=forms.Select(attrs={'style': 'overflow: auto;'}))
+
+    # New fields
+    
