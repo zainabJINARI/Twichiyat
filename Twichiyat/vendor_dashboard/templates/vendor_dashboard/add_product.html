@@ -1,38 +1,39 @@
 {% extends 'base_layout.html' %}
-
-{% block content %}
-
 <div class="new_product_wrapper">
-  <header>Add Product</header>
+{% block content %}
+<div class="new-product-container">
+  <h1>Product Creation</h1>
         <form action="{% url 'vendor_dashboard:add_product' %}"  method="post" enctype="multipart/form-data">
-
             {% csrf_token %}
-            <div class="dbl-fields">
-                    <div class="field">
-                        Type {{ form.product_type }}
-                    </div>
-                    <div class="field">
-                       Price {{ form.price }}
-                    </div>
+            <div class="field">
+                <label for="">Type </label>
+                {{ form.product_type }}
             </div>
-            <div class="dbl-fields">
-                    <div class="field">
-                        Size {{ form.size }}
-                    </div>
-                    <div class="field">
-                        Color {{ form.color }}
-                    </div>
+            <div class="field">
+                <label for="">Price</label>
+                {{ form.price }}
+            </div> 
+            <div class="field">
+                <label for="">Size </label>
+                {{ form.size }}
+            </div>
+            <div class="field">
+                <label for="">Color</label>
+                {{ form.color }}
             </div>
             <div class="image">
-                load image {{ form.image }}
+                <label for="">load image</label>
+                {{ form.image }}
             </div>
             <div class="description">
-                Description {{ form.description }}
+                <label for="">Description</label>
+                {{ form.description }}
             </div>
-            <div class="button-area"> 
-                <button type="submit" >Create</button>
-            </div>
+            <input type="submit" value="Create Product">
+            <!-- <button type="submit" >Create</button> -->
+            
         </form>
 
 </div>
 {% endblock %}
+</div>

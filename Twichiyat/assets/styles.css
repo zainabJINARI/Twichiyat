@@ -313,17 +313,26 @@ header.header{
     display: none;
 }
 /* login style */
-.login-wrapper,.signup-wrapper,.update-account-wrapper{
+.login-wrapper,
+.signup-wrapper,
+.update-account-wrapper,
+.new_product_wrapper,
+.update-product-wrapper{
     vertical-align: middle;
     display: flex;
     flex-direction: column;
     width: 100%;
     padding-bottom: 4em;
+    
   
 }
 
 
-.login-container,.signup-container,.update-container{
+.login-container,
+.signup-container,
+.update-container,
+.new-product-container,
+.update-product-container{
     margin: auto;
     position: relative;
     width: 100%;
@@ -337,22 +346,32 @@ header.header{
     font-weight: 400;
     line-height: normal;
     /* border: 1px solid #302219; */
-
 }
+
 .login-container h1,
-.signup-container h1,.update-container h1{
+.signup-container h1,
+.update-container h1,
+.new-product-container h1,
+.update-product-container h1{
     margin-bottom: 0em;
     color: #CD8761;
     letter-spacing: 1px;
     text-shadow: 1px 2px #302219;
 }
-.login-container form,.signup-container form, .update-container form {
+.login-container form,
+.signup-container form, 
+.update-container form,
+.new-product-container form, 
+.update-product-container form{
     padding: 1em 3em;
    
 }
+
 .login-container form > div,
 .update-container form > p,
-.signup-container form > div {
+.signup-container form > div,
+.new-product-container form > div, 
+.update-product-container form > div {
     display: flex;
     text-align: start;
     flex-direction: column;
@@ -364,24 +383,36 @@ header.header{
     
 }
 .login-container form > div input,
-.signup-container form > div input,.update-container form > p input,.update-container form > p select{
+.signup-container form > div input,
+.update-container form > p input,
+.update-container form > p select,
+.new-product-container form > div input,
+.new-product-container form > div select,
+.new-product-container form > div textarea, 
+.update-product-container form > div input, 
+.update-product-container form > div select,
+.update-product-container form > div textarea{
     flex:1;
     padding: 0.6em;
     margin-top: 1em;
     border-radius: 10px;
     border: 2px solid #62412F;
 }
-.update-container form > p select option{
+.update-container form > p select option,
+.new-product-container form > div select option,
+.update-product-container form > div select option{
     width: 100%;
     max-width: 500px;
 }
 .login-container form > input ,
 .signup-container form > input,
-.update-container form > input{
+.update-container form > input,
+.new-product-container form > input,
+.update-product-container form >  input{
     margin-top: 2em;
     width: 100%;
     padding: 0.6em ;
-    /* margin-bottom: 5em; */
+    
     border-radius: 10px;
     color: rgb(228, 182, 157);
     font-size: 1em;
@@ -390,21 +421,28 @@ header.header{
     text-shadow: #CD8761;
 
 }
-.login-container form >input:hover,.signup-container form > input:hover,.update-container form >input:hover{
+.new-product-container form > input{
+    margin-bottom: 6em;
+}
+.login-container form >input:hover,
+.signup-container form > input:hover,
+.update-container form >input:hover{
     cursor: pointer;
     font-size: 1.025em;
     background-color: #62412F;
     color: whitesmoke;
     
 }
-.login-container p,.signup-container p{
+.login-container p,
+.signup-container p{
     font-weight: lighter;
     color: #62412F;
     font-size: small;
     margin-bottom: 9em;
 }
 
-.login-container p a,.signup-container p a{
+.login-container p a,
+.signup-container p a{
     font-weight: bold;
     letter-spacing: 1px;
     text-decoration: none;
@@ -423,6 +461,19 @@ header.header{
 /* update account */
 .update-btn{
     margin-bottom: 5em
+}
+.update-product-container form > div:nth-child(6){
+    color: #f0ebe4;
+}
+.update-product-container form > div:nth-child(6) :not(:first-child):not(:last-child)
+{
+    display: none;
+    color: #f0ebe4;
+
+}
+.update-product-container form > div:nth-child(6):last-child input::before {
+    content: "Image";
+    color: #966951 !important;
 }
 /* Dashboard style */
 .dashboard-container{
@@ -486,6 +537,13 @@ header.header{
     text-decoration: none;
     font-weight: bold;
 }
+/* error login style */
+.error-login{
+    margin-bottom: 0 !important;
+    padding: 1em !important;
+    font-weight: bold;
+
+}
 /* delete message */
 .delete{
     position: fixed;
@@ -511,13 +569,13 @@ header.header{
     text-shadow: 1px 2px #302219;
 }
 
-.delete .delete-btn{
+.delete .delete-btn,.delete .login-vendor{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     width: 100%;
 }
-.delete .delete-btn .btn-elet{
+.delete .delete-btn .btn-elet,.delete .login-vendor .btn-elet{
     padding: 0.7em 3em;
     border-radius: 5px;
     font-size: 1rem;
@@ -526,7 +584,10 @@ header.header{
     color: #302219;
     background-color: #f0ebe4;
 }
-
+.delete .login-vendor .btn-elet a{
+    text-decoration: none;
+    color: #302219;
+}
 .delete-btn button:first-child:hover{
     background-color: #302219;
     color: white;
@@ -728,202 +789,139 @@ header.header{
 }
 
 
-/* Hanane Area  */
 /* Area_product Css  */
+.product-area-option{
+    padding: 0.5em 3em;
+}
 .board{
-    width: 94%;
-    margin: 40px 30px 30px 30px ;
-    overflow: auto;
-    border-radius: 8px;
-    
+   flex: 1;
+   display: flex;
+   flex-direction: column;
+   width: 100%;
+   padding: 0;
+   margin: 0;
+   margin-top: 2em;
+   margin-bottom: 4em;
+   text-align: center;   
 }
 .board img {
-    width:45px ;
-    height: 45px;
+    width: 100%;
+    max-width: 45px;
+    min-height: 45px;
     object-fit: cover;
     border-radius: 50%;
-    margin-right: 15px;
-
 }
-.board h5 {
+.board table tbody {
     font-weight: 600;
-    font-size: 13px;
+    font-size: 0.6rem;
     color:#966951 ;
 }
-
-.board p {
-    font-weight: 400;
-    font-size: 13px;
-    color: #CACACA;
-}
-
 .board .product {
     display: flex;
     justify-content: flex-start;
-    align-items: center;
     text-align: start;
 }
-
-table{
-    border-collapse: collapse;
+.board .product *{
+    margin: auto;
 }
+table {
+    width: 100%;
 
-tr{
+}
+thead tr{
+  border-radius: 10px;
   border-bottom:  1px solid #CACACA;
 }
 
-thead td{
-    font-size: 14px ;
-    text-transform: uppercase;
-    font-weight: 400;
-    background-color: #966951;
-    text-align: start;
-    padding: 15px;
+tbody tr{
+    border-radius: 10px;
+    background-color:  #EBE0CD;
+    color: #302219;
+    border-bottom:  1px solid #CD8761;
 }
-
-.status select {
-    background-color:#CACACA ;
-    color:#302219 ;
+tbody tr td:first-child{
+    display: flex;
+    padding: 0.5em;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
 }
-
-.edit a {
-    text-decoration: none;
-    font-size: 14px;
-    color: #302219 ;
-    font-weight:600 ;
-}
-
-
-/* Add product css */
-.new_product_wrapper{
-    margin: auto;
-    position: relative;
+tr td:first-child .product-inf{
     width: 100%;
-    max-width: 600px;
     display: flex;
     flex-direction: column;
-    text-align: center;
-    font-family: 'Barlow', sans-serif;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-}
-.new_product_wrapper header {
-    font-size: 22px;
-    font-weight: 600;
-    border-bottom: 1px solid #62412F;
-    margin-bottom: 0em;
-    color: #CD8761;
-    letter-spacing: 1px;
-    text-shadow: 1px 2px #302219;
-    text-align: center;
-    padding: 20px 30px;
-}
-
-.new_product_wrapper form{
-   margin: 35px 30px ;
-}
-
-form .dbl-fields{
-     display: flex;
-     align-items: center;
-     margin-bottom: 25px;
-     justify-content:space-between;
-}
-.dbl-fields .field {
-    height: 50px ;
-    width: calc(100% / 2 - 13px );
-    color:#62412F;
-    font-size: 18px;
-    
-} 
-form .field input  , form .description textarea{
-     height: 100%;
-     width: 100%;
-     outline: none;
-     padding: 0 18px;
-     font-size: 16px;
-     border-radius: 5px;
-     border: 1px solid #966951 ;
-}
-
-form .image , form .description{
-    color:#62412F;
-    font-size: 18px;
-    margin-bottom: 25px;
-}
-
-
-form .image {
-    padding: 25px 0 0 0;
-    align-items: center;
-}
-
-form .image input{
-    color:#62412F;
-    font-size: 18px;
-    background-color: #EBE0CD;
-}
-
-form .field select {
-    height: 100%;
-    width: 100%; color:#62412F;
-    font-size: 16px;
-}
-
-form .description textarea {
-    min-width:100% ;
-    max-width: 100%;
-    min-height:120px ;
-    max-height: 300px;
-    padding: 15px 20px 0 48px ;
 
 }
-
-
-form .field input  , form .field textarea {
-    border: 2px solid #302219;
+tr td:first-child .product-inf h5:first-child{
+    text-transform: capitalize;
+}
+tr td:first-child .product-inf *{
+    margin: 0.1em auto 0.1em auto ;
+}
+thead td{
+    font-size: 0.8rem ;
+    text-transform: uppercase;
+    background-color: #966951;
+    padding: 1em 0;
+    font-weight: bold;
+    color: #302219;
 }
 
-form .button-area {
-    margin: 25px 0 ;
-    text-align: center;
-}
-
-.button-area button {
-    width: 30%;
-    font-size: 18px;
-    padding:  13px 25px;
-    color :#EBE0CD ;
-    background-color:  #966951;
+.options a {
+    text-decoration: none;
+    color: #302219 ;
     cursor: pointer;
-    border-radius: 5px;
+    padding: 2em 1em;
 }
 
-@media (max-width:600px) {
-    .new_product_wrapper header {
-        text-align: center;   
+@media (max-width:320px){
+    thead td{
+        font-size: 0.6rem ;}
+}
+@media (min-width:500px){
+    .board table tbody{
+        font-size: 1rem;
     }
-
-    form .dbl-fields {
-         flex-direction: column;
-    }
-    .dbl-fields .field {
-        width: 100%;
-        margin-bottom: 20px;
-
-    }
-    .button-area button {
-        width: 100%;
-
-    }
-    form .button-area {
-           flex-direction: column;
+    .board table thead{
+        font-size: 1.2rem;
     }
 }
 
+/* product area search bar */
+.nav-dashboard-search{
+    display: none;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    text-align: center;
+    margin:  0  auto 1em;
 
+}
+.affiche{
+    display: flex;
+}
+.nav-dashboard-search form{
+    padding: 0 1em;
+    width: 100%;
+    display: flex;
+    border-radius: 10px;
+    
 
+}
+.nav-dashboard-search form input{
+    padding: 0.5em 1em;
+    border-radius: 10px;
+    border: 2px solid #62412F;
+    flex: 1;
+    
+}
+.nav-dashboard-search form button{
+    border: none;
+    background-color: transparent;
+}
 
-
+/* style selected deleted elment  */
+.selected-item{
+    background-color: rgb(234, 147, 147);
+}

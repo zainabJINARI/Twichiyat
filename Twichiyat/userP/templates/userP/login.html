@@ -10,7 +10,9 @@
             <input type="hidden" name="next" value="{{ request.GET.next }}">
             {% endif %}
             <input type="submit" value="Login">
-    
+            <p class="error-login">{{ errors }}</p>
+            
+            
         </form>
     
         <p>Don't have an account <a href="{% url 'userP:signup' %}?next={{ request.GET.next }}"><span class="sign-up"> SignUp</span></a></p>

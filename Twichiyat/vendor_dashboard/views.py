@@ -5,11 +5,20 @@ from userP.models import Profile
 from userP.forms import UserUpdateForm, ProfileUpdateForm
 from . import forms
 from .models import Product
+from django.http import HttpResponse, JsonResponse
+from .forms import UpdateProduct
+from django.shortcuts import get_object_or_404
+
+
 
 # Create your views here.
 @login_required( login_url="/userP/login")
 def dashboard_home(request):
-    return render(request,'vendor_dashboard/dashboard.html')
+    current_profile = Profile.objects.get(user=request.user)
+    if current_profile.is_vendor == True:
+        return render(request,'vendor_dashboard/dashboard.html')
+    else:
+        return render(request,'vendor_dashboard/redirectasV.html')
 
 @login_required(login_url="/userP/login")
 def update_account(request):
@@ -49,12 +58,13 @@ def delete_account(request):
         current_profile = Profile.objects.get(user=request.user)
         current_profile.user.delete()
         return redirect('home')
-    
+  
+@login_required(login_url="/userP/login")  
 def product_area(request) :
     products = Product.objects.all() 
     return render(request , 'vendor_dashboard/product_area.html',{'products' :products})
 
-
+@login_required(login_url="/userP/login")
 def add_product(request) :
     if request.method == 'POST' :
         form = forms.CreateProduct(request.POST , request.FILES)
@@ -67,4 +77,36 @@ def add_product(request) :
     else :
         form = forms.CreateProduct()
     return render(request , 'vendor_dashboard/add_product.html' , {'form':form })
+
+
+
+
+
+@login_required(login_url="/userP/login")
+def update_product(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+
+    if request.method == 'POST':
+        form = UpdateProduct(request.POST, instance=product)
+        if form.is_valid():
+            form.save()
+            return redirect('vendor_dashboard:product_area')
+    else:
+        form = UpdateProduct(instance=product)
+
+    return render(request, 'vendor_dashboard/update_product.html', {'form': form, 'product': product})
+
+
+@login_required(login_url="/userP/login")
+def delete_product(request):
+    if request.method == 'POST':
+        selected_ids = request.POST.getlist('selected_ids[]')
+        product_ids = [product.id for product in Product.objects.all()]
+        selected_ids = [int(id) for id in selected_ids]
+        products_to_delete = Product.objects.filter(id__in=selected_ids)
+        products_to_delete.delete()
+        return redirect('vendor_dashboard:product_area')
+    else:
+        return HttpResponse("<h1>Invalid method</h1>")
+
     

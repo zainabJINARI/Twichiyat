@@ -1,0 +1,13 @@
+{% extends 'base_layout.html'%}
+{% load static%}
+{% block content %}
+<div class='delete'>
+    <h3>Wanna Be a Vendor?</h3>
+    <p>Try loging in with a vendor account to start selling items</p>
+    <div class='login-vendor'>
+        <button class='btn-elet'><a href="{% url 'userP:login' %}?next=/dashboard/">Login as Vendor</a></button>
+        <button class='btn-elet'><a href="{% url 'Store:shopnow' %}"> Back Shop</a></button>
+    </div>
+</div>
+
+{% endblock %}

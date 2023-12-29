@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from .forms import CreateUser,UserCreationForm , AuthenticationForm
-from django.contrib.auth import login 
-from django.http import HttpResponse
+from django.contrib.auth import login , authenticate
+from django.http import HttpResponse, JsonResponse
 
 
 from django.shortcuts import render,redirect
@@ -36,11 +36,10 @@ def signup_view(request):
             if profile.is_vendor:
                 return redirect('vendor_dashboard:dashboard')
             else:
-                return redirect('home')
+                return redirect('Store:shopnow')
 
     else:
         form = CreateUser()
-
     return render(request, 'userP/signup.html', {'form': form})
 
 
@@ -51,30 +50,22 @@ def login_view(request):
         form = AuthenticationForm(data=request.POST)
         if form.is_valid() :
             user=form.get_user()
+            current_profile = Profile.objects.get(user=user)
             login(request , user)
-            profiles = Profile.objects.all()
-            for p in profiles :
-                if p.is_vendor == True :
-                    return redirect('vendor_dashboard:dashboard')
-
-            if user.is_vendor == True :
+            if  current_profile.is_vendor == True:
                 return redirect('vendor_dashboard:dashboard')
             else :
-                if 'next' in request.POST :
-                    # return  redirect(request.POST.get('next'))
-                    return HttpResponse("Hi")
-
-                else :
-                    if 'next' in request.POST :
-                        return  redirect(request.POST.get('next'))
-                    else :
-                        pass
-                        #redirect shop
-                        # return redirect('')
+                return redirect('Store:shopnow')
+        else:
+            errors = {field: form.errors[field] for field in form.errors}
+            error_str = str(errors)
+            errors=error_str.split("'")[3]
+            form =AuthenticationForm()
+            return render(request,'userP/login.html' , { 'form':form ,'errors': errors})
        
     else:
         form =AuthenticationForm()
-        return render(request,'userP/login.html' , { 'form':form })
+        return render(request,'userP/login.html' , { 'form':form ,'errors':'' })
  
     
     

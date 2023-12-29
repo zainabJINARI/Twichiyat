@@ -1,0 +1,14 @@
+{% extends 'base_layout.html'%}
+{% block content %}
+    <div class="update-product-wrapper">
+        <div class="update-product-container">
+            <h1>Update Product</h1>
+            <form class="site-form"  method="post">
+                {% csrf_token %}
+                {{ form }}
+                <input type="submit" value="Update Product" class="update-btn">
+            </form>
+          </div>
+    </div>
+   
+{% endblock %}
