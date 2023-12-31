@@ -47,6 +47,7 @@ def update_account(request):
                 profile_form.save()
             login(request, user)
             return redirect('vendor_dashboard:dashboard')
+        
     else:
         user_form = UserUpdateForm(instance=current_profile.user)
         profile_form = ProfileUpdateForm(instance=current_profile)
@@ -73,7 +74,8 @@ def add_product(request) :
             instance.author =request.user 
             instance.save()
             return redirect('vendor_dashboard:product_area')
-    
+        else:
+            return JsonResponse({'error': 'form invalid', 'errors': form.errors})    
     else :
         form = forms.CreateProduct()
     return render(request , 'vendor_dashboard/add_product.html' , {'form':form })
@@ -87,10 +89,14 @@ def update_product(request, product_id):
     product = get_object_or_404(Product, id=product_id)
 
     if request.method == 'POST':
-        form = UpdateProduct(request.POST, instance=product)
+        form = UpdateProduct(request.POST, request.FILES, instance=product)
         if form.is_valid():
-            form.save()
+            product=form.save()
+            print(product.type_p)
             return redirect('vendor_dashboard:product_area')
+        else:
+            return JsonResponse({'error': 'form invalid', 'errors': form.errors})  
+            
     else:
         form = UpdateProduct(instance=product)
 
@@ -108,6 +114,17 @@ def delete_product(request):
         return redirect('vendor_dashboard:product_area')
     else:
         return HttpResponse("<h1>Invalid method</h1>")
+    
+
+@login_required(login_url="/userP/login")
+def search_product(request) :
+    if request.method =='POST':
+       searched = request.POST['search']
+       product_search = Product.objects.filter(type_p=searched , author=request.user)
+       return render(request , 'vendor_dashboard/search_product.html',{'product_search' :product_search})
+    else :
+     products = Product.objects.filter(author=request.user)
+    return   render(request , 'vendor_dashboard/search_product.html' , {'products':products} )
     
 
     

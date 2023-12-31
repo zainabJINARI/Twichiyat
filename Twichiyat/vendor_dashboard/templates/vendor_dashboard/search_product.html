@@ -1,0 +1,113 @@
+{% extends 'base_layout.html' %}
+{% load static %}
+{% block content %}
+<div class="dashboard-container">
+    <div class="options-list product-area-option">
+        <a href="{% url 'vendor_dashboard:add_product' %}" name="Add Product"><span class=""><i class="fa-solid fa-plus" style="color: #CD8761;"></i></span> <span class="text-hidden">Add Product</span></a>
+        <a href="{% url 'vendor_dashboard:product_area' %}"><span class=""><i class="fa-solid fa-magnifying-glass" style="color: #CD8761;"></i></span> <span class="text-hidden">Search Product</span> </a>
+        <a href="{% url 'vendor_dashboard:dashboard' %}" name="Product Area"><span class=""><i class="fa-solid fa-backward" style="color: #CD8761;"></i></span> <span class="text-hidden">Back Dashboard</span> </a>
+        <a href="#" name="Delete_Product"><span class=""><i class="fa-solid fa-trash" style="color: #CD8761;"></i></span> <span class="text-hidden"> Delete All Prod</span></a>  
+    </div>
+  <div class="board">
+      <nav class="nav-dashboard-search affiche">
+        <form action="{% url 'vendor_dashboard:search_product' %}" role="search" method="POST">
+            {% csrf_token %}
+            <input type="text" placeholder="Search Product Name" name="search">
+            <button type="submit"><i class="fa fa-search"></i></button>
+            {% if product_search %}
+            <a href="{% url 'vendor_dashboard:search_product' %}" name="Reload"><i class="fa-solid fa-repeat" style="color: #CD8761;"></i></a>
+            {% else %}
+            <a href="#"  style="display: none;"><i class="fa-solid fa-repeat" style="color: #CD8761;"></i></a>
+            {% endif %}
+        </form>
+      </nav>
+            <table width="100%">
+               <thead>
+                  <tr>
+                      <td>Product</td>
+                      <td>Description</td>
+                      <td>Size</td>
+                      <td>Price</td>
+                      <td>Status</td>
+                      <td>Options</td>
+                  </tr>
+               </thead>
+               <tbody>
+                {%  if  product_search %}
+                        {% for product in product_search %}
+                        <tr class="tr_product">
+                          <td style="display: none;" >
+                            <p class="product-id" >{{ product.id }}</p>
+                          </td>
+                            <td class="product">
+                              <img src="{{ product.image.url }}" alt="Product Image" >
+                              <div class="product-inf">
+                                <h5>{{ product.product_type }}</h5>
+                              </div>
+                            </td>
+                            <td class="description" style="width: 35%;">
+                              <h5>{{ product.description}}</h5>
+                          </td>
+                            <td class="size" style="width: 10%;">
+                                <h5>{{ product.size}}</h5>
+                            </td>
+                            <td class="price" style="width: 10%;">
+                                  <h5>{{ product.price }} $</h5>
+                            </td>
+                            <td class="status" style="width: 10%;">
+                                <h5>{{ product.status }}</h5>
+                            </td>
+                            <td class="options" style="width: 10%;">
+                                <a href="{% url 'vendor_dashboard:update_product' product_id=product.id %}"><i class="fa-solid fa-pen-to-square" style="color: #CD8761;"></i></a>
+                                <a href="#" name="Delete_Oneproduct"><i class="fa-solid fa-trash" style="color: #CD8761;"></i></a>   
+                            </td>
+                        </tr>
+                      {% endfor %} 
+                {% else  %}
+                          {% for productt in products %}
+                            <tr class="tr_product">
+                              <td style="display: none;" >
+                                <p class="product-id" >{{ productt.id }}</p>
+                              </td>
+                                <td class="product">
+                                  <img src="{{ productt.image.url }}" alt="Product Image" >
+                                  <div class="product-inf">
+                                    <h5>{{ productt.product_type }}</h5>
+                                  </div>
+                                </td>
+                                <td class="description" style="width: 35%;">
+                                  <h5>{{ productt.description}}</h5>
+                              </td>
+                                <td class="size" style="width: 10%;">
+                                    <h5>{{ productt.size}}</h5>
+                                </td>
+                                <td class="price" style="width: 10%;">
+                                      <h5>{{ productt.price }} $</h5>
+                                </td>
+                                <td class="status" style="width: 10%;">
+                                    <h5>{{ productt.status }}</h5>
+                                </td>
+                                <td class="options" style="width: 10%;">
+                                    <a href="{% url 'vendor_dashboard:update_product' product_id=productt.id %}"><i class="fa-solid fa-pen-to-square" style="color: #CD8761;"></i></a>
+                                    <a href="#" name="Delete_Oneproduct"><i class="fa-solid fa-trash" style="color: #CD8761;"></i></a>
+                                </td>
+                            </tr>
+                          {% endfor %}  
+                {% endif %}  
+               </tbody>
+            </table>
+  </div>
+  <div class='delete hidden-div'>
+    <h3>Delete Items:</h3>
+    <p>Are you sure you want to delete these items</p>
+    <div class='delete-btn'>
+        <button class='btn-elet cancel'>Cancel</button>
+        <form  id="deleteForm" action="{% url 'vendor_dashboard:delete_product' %}" method="post" >
+            {% csrf_token %}
+            <button type="submit" class='btn-elet'>Delete</button>
+        </form>
+    </div>
+  </div>
+</div> 
+<script src="{% static 'search.js' %}"></script>
+{% endblock %}

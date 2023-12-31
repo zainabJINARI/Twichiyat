@@ -66,6 +66,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'userP.context_processors.profiles',
+                'Store.context_processors.collectionslist',
             ],
         },
     },

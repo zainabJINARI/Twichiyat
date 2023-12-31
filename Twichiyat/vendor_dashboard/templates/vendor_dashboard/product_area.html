@@ -4,16 +4,17 @@
 <div class="dashboard-container">
     <div class="options-list product-area-option">
         <a href="{% url 'vendor_dashboard:add_product' %}" name="Add Product"><span class=""><i class="fa-solid fa-plus" style="color: #CD8761;"></i></span> <span class="text-hidden">Add Product</span></a>
-        <a href="#" name="ProductArea"><span class=""><i class="fa-solid fa-magnifying-glass" style="color: #CD8761;"></i></span> <span class="text-hidden">Search Product</span> </a>
+        <a href="{% url 'vendor_dashboard:search_product' %}" name="ProductArea"><span class=""><i class="fa-solid fa-magnifying-glass" style="color: #CD8761;"></i></span> <span class="text-hidden">Search Product</span> </a>
         <a href="{% url 'vendor_dashboard:dashboard' %}" name="Product Area"><span class=""><i class="fa-solid fa-backward" style="color: #CD8761;"></i></span> <span class="text-hidden">Back Dashboard</span> </a>
         <a href="#" name="Delete_Product"><span class=""><i class="fa-solid fa-trash" style="color: #CD8761;"></i></span> <span class="text-hidden"> Delete All Prod</span></a>  
     </div>
   <div class="board">
       <nav class="nav-dashboard-search">
-        <form action="" role="search" method="POST">
-            <input type="text" placeholder="Search Product Name" name="search">
-            <button type="submit"><i class="fa fa-search"></i></button>
-        </form>
+        <form action="{% url 'vendor_dashboard:search_product' %}" role="search" method="POST">
+          {% csrf_token %}
+          <input type="text" placeholder="Search Product Name" name="search">
+          <button type="submit"><i class="fa fa-search"></i></button>
+      </form>
       </nav>
             <table width="100%">
                <thead>

@@ -2,11 +2,11 @@
 
 {%load static %}
 {% block content %}
-<h2 class="shop-titles">All Products of  {{ category }}</h2>
+		<h2 class="shop-titles">All Products of  {{ category }}</h2>
 		<section class="new-products-list margin">
             
 			{% for product in products %}
-				<a class="product override" href="{% url 'Store:product_detail' product_id=product.id %} ">
+				<a class="product override"  onclick="showProductModal('{{ product.name }}', '{{ product.price }}', '{{ product.image.url }}','{{ product.quantity }}','{{ product.description }}','{{ product.size }}')">
 						<img src="{{ product.image.url }}"  alt="product image ">
 						<h3>Product :{{ product.name}}</h3>
 						<h5>{{ product.price}} $</h5>
@@ -21,4 +21,34 @@
 			{% endfor %}
 		
 		</section>
+		 <!-- Modal -->
+		<div id="productModal" class="modal">
+			<div class="modal-content">
+				<span class="close" onclick="closeProductModal()">&times;</span>
+				<div class="img-container">
+					<img id="modalImage" alt="product image">
+				</div>
+				<div class="product-info">
+					<h3 id="modalProductName"></h3>
+					<h5 id="quantity"></h5>
+					<div class="more-details">
+						<h4 id="modalProductPrice"></h5>
+						<h4 id="size"></h5>
+						<p id="description" class="description"></p>
+					</div>
+					
+					<div class="quantity">
+						<div class="incrementor-decrementor">
+							<button id="add" onclick="add()"><i class="fa-solid fa-plus" style="color: #CD8761;"></i></button>
+							<input type="number" id="valueQuant">
+							<button id="sub" onclick="sub()"><i class="fa-solid fa-minus" style="color: #CD8761;"></i></button>
+						</div>
+						<button  class="add-cart" id="add-cart">ADD TO CART</button>
+					</div>
+				</div>
+				<!-- Add other product details here -->
+			</div>
+		</div>
+		<script src="{% static 'productDetails.js' %}"></script>
+		
 {% endblock  %}
