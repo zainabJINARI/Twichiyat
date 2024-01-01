@@ -8,14 +8,19 @@ from .models import Product
 from django.http import HttpResponse, JsonResponse
 from .forms import UpdateProduct
 from django.shortcuts import get_object_or_404
-
-
+from django.db.models import Q
+from Store.models import Order
 
 # Create your views here.
 @login_required( login_url="/userP/login")
 def dashboard_home(request):
     current_profile = Profile.objects.get(user=request.user)
     if current_profile.is_vendor == True:
+        allorders=Order.objects.all()
+        productsVendor = Product.objects.filter(author=request.user)
+        print(allorders)
+        print(len(productsVendor))
+        
         return render(request,'vendor_dashboard/dashboard.html')
     else:
         return render(request,'vendor_dashboard/redirectasV.html')
@@ -120,7 +125,10 @@ def delete_product(request):
 def search_product(request) :
     if request.method =='POST':
        searched = request.POST['search']
-       product_search = Product.objects.filter(type_p=searched , author=request.user)
+       product_search = Product.objects.filter(
+        Q(type_p__icontains=searched) | Q(name__icontains=searched) | Q(color__icontains=searched) ,
+        author=request.user
+       )
        return render(request , 'vendor_dashboard/search_product.html',{'product_search' :product_search})
     else :
      products = Product.objects.filter(author=request.user)

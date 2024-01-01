@@ -14,7 +14,7 @@
             {% csrf_token %}
             <input type="text" placeholder="Search Product Name" name="search">
             <button type="submit"><i class="fa fa-search"></i></button>
-            {% if product_search %}
+            {% if product_search or product_search is not defined %}
             <a href="{% url 'vendor_dashboard:search_product' %}" name="Reload"><i class="fa-solid fa-repeat" style="color: #CD8761;"></i></a>
             {% else %}
             <a href="#"  style="display: none;"><i class="fa-solid fa-repeat" style="color: #CD8761;"></i></a>

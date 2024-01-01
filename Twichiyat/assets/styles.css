@@ -348,10 +348,12 @@ header.header{
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
     border-bottom: none;
-
+    
 }
 ul.submenu{
     display: none;
+    z-index:1;
+    opacity:0.8;
 }
 ul.displaylist{
     border: 1px solid #EBE0CD;
@@ -1565,7 +1567,6 @@ body .cart-area{
     position: fixed;
     top: 0;
     right: 0;
-    
     animation: fade-right 0.5s ease-in;
     background-color: #EBE0CD;
     z-index: 3;
@@ -1577,7 +1578,7 @@ body .cart-area{
     box-shadow: 2px 2px #62412F;
      
 }
-body .cart-area > div .cart-items{
+.cart-items{
     display: flex;
     flex-direction: column;
     font-size: 0.8rem;
@@ -1597,6 +1598,7 @@ body .cart-area > div .cart-items .cart-item{
     margin: 1em 0;
 
 }
+
 body .cart-area > div .cart-items .cart-item div > img{
     width: 100%;
     max-width: 60px;
@@ -1661,11 +1663,16 @@ body .cart-area > div:nth-child(2){
 }
 .no-items{
    margin: auto;
+   display: none;
+   flex-direction: column;
 }
-div.payement{
+form.payement{
     margin-top: auto;
     display: flex;
     flex-direction: column;
+}
+form.payement #paycont *{
+    width:100%;
 }
 
 body .cart-area div:nth-child(2) button,.payement .pay-btn{
@@ -1682,6 +1689,9 @@ body .cart-area div:nth-child(2) button,.payement .pay-btn{
    margin-right: auto;
    font-size: 1.8em;
    cursor: pointer;
+}
+.cart-items{
+    display: none;
 }
 
 

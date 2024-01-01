@@ -6,7 +6,7 @@
 		<section class="new-products-list margin">
             
 			{% for product in products %}
-				<a class="product override"  onclick="showProductModal('{{ product.name }}', '{{ product.price }}', '{{ product.image.url }}','{{ product.quantity }}','{{ product.description }}','{{ product.size }}')">
+				<a class="product override"  onclick="showProductModal('{{ product.name }}', '{{ product.price }}', '{{ product.image.url }}','{{ product.quantity }}','{{ product.description }}','{{ product.size }}',{{ product.id }})">
 						<img src="{{ product.image.url }}"  alt="product image ">
 						<h3>Product :{{ product.name}}</h3>
 						<h5>{{ product.price}} $</h5>
@@ -40,7 +40,7 @@
 					<div class="quantity">
 						<div class="incrementor-decrementor">
 							<button id="add" onclick="add()"><i class="fa-solid fa-plus" style="color: #CD8761;"></i></button>
-							<input type="number" id="valueQuant">
+							<input type="number" id="valueQuant" value="1">
 							<button id="sub" onclick="sub()"><i class="fa-solid fa-minus" style="color: #CD8761;"></i></button>
 						</div>
 						<button  class="add-cart" id="add-cart">ADD TO CART</button>

@@ -43,7 +43,7 @@
                     {% for p in profiles %}
                          {% if p.user == user %}
                             {% if p.is_vendor %}
-                                <li class="nav-elt"><a href="{% url 'vendor_dashboard:dashboard'%}"><span class="hidden"><i class="fa-solid fa-magnifying-glass" style="color: #CD8761;"></i></span><span class="text-hidden">DashBoard</span></a></li>
+                                <li class="nav-elt"><a href="{% url 'vendor_dashboard:dashboard'%}"><span class="hidden"><i class="fa-solid fa-user-tie" style="color: #CD8761;"></i></span><span class="text-hidden">DashBoard</span></a></li>
                             {% else %}
                                 <li class="nav-elt"><a href=""><span class="hidden"><i class="fa-sharp fa-regular fa-heart" style="color: #CD8761;"></i></span><span class="text-hidden">WatchList</span></a></li>
                             {% endif %}
@@ -66,81 +66,30 @@
         <p class="copy-right">Copy right @2023</p>
     </footer>
     <div class="cart-area">
+        {% csrf_token %%}
         <span class="close-cart">&times;</span>
         <div>
             <h1>Cart</h1>
             <p class="slogan-cart">Each piece is unique, <span>snap up your finds quick</span> </p>
-            <!-- <div class="no-items">
+            <div class="no-items">
                 <p>No items in your Cart</p>
                 <button>ADD ITEMS</button>  
-            </div> -->
+            </div>
             <div id="cart-items" class="cart-items">
-                <div id="cart-item" class="cart-item" >
-                    <span class="remove-item">&times;</span>
-                    <div>
-                        <img src="{% static 'dress.jpg' %}" alt="" width="70px">
-                    </div>
-                    <div class="info">
-                        <div class="base-info">
-                            <h5>Product Name</h5>
-                            <p>Product size</p>
-                            <p>prodct price</p>
-                        </div>
-                        <div class="cart-quant">
-                            <button><i class="fa-solid fa-plus" style="color: #302219;"></i></button>
-                            <input type="text"  id="valueQuant" value="1">
-                            <button ><i class="fa-solid fa-minus" style="color: #302219;"></i></button>
-                        </div>
-                    </div>
-                </div>
-                <div id="cart-item" class="cart-item" >
-                    <span class="remove-item">&times;</span>
-                    <div>
-                        <img src="{% static 'dress.jpg' %}" alt="" >
-                    </div>
-                    <div class="info">
-                        <div class="base-info">
-                            <h5>Product Name</h5>
-                            <p>Product size</p>
-                            <p>prodct price</p>
-                        </div>
-                        <div class="cart-quant">
-                            <button><i class="fa-solid fa-plus" style="color: #302219;"></i></button>
-                            <input type="text"  id="valueQuant" value="1">
-                            <button ><i class="fa-solid fa-minus" style="color: #302219;"></i></button>
-                        </div>
-                    </div>
-                </div>
-                
-                
-                
+                  
             </div>
         </div>
-        <div class="payement">
-            <textarea name="note" id="" cols="30" rows="5" placeholder="Add note to your order" ></textarea>
-            <button class="pay-btn">Procced to Paiment</button>
-        </div>
+        <form class="payement" action="{% url 'Store:order' %}" method="POST">
+            {% csrf_token %}
+            <div id="paycont">
+            </div>
+            <button class="pay-btn" type="submit">Procced to Paiment</button>
+        </form>
         
     </div>
-    <script>
-        const categories = document.getElementById('categoriesnav')
-        categories.addEventListener('click',(e)=>{
-            categories.classList.toggle('categoriesnav')
-            document.querySelector('ul.submenu').classList.toggle('displaylist')
-        })
-        const displayCartBtn = document.querySelector('li[class="nav-elt rounded-cart"]')
-        const cartContainer = document.querySelector('.cart-area')
-        displayCartBtn.addEventListener('click',()=>{
-            console.log('here')
-            cartContainer.style.display='flex'
-           
-        })
-        document.querySelector('.close-cart').addEventListener('click',()=>{
-            cartContainer.style.display='none'
-            
-        })
+    <script src="{% static 'cart.js' %}">
+       
     </script>
-
 
 </body>
 </html>

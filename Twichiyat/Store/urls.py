@@ -9,6 +9,8 @@ urlpatterns = [
     re_path(r'liste/',views.file_product,name="file_product"),
     re_path(r'prodliset/',views.productlist,name="productlist"),
     path('product_category/<int:category_id>/',views.product_category,name='product_category'),
-    path('products/<int:product_id>/',views.product_details,name='product_detail')
+    path('products/<int:product_id>/',views.product_details,name='product_detail'),
+    path('order',views.order_product,name='order'),
+    re_path(r'add_order/$',views.add_order,name="addOrder")
 ]
 

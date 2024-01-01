@@ -1,0 +1,25 @@
+{% extends 'base_layout.html' %}
+<div class="order-container">
+   {%  block content %}
+
+   <h2>Total: <span>202$</span></h2>
+   <h3>Delivery</h3>
+   <form action="{% url 'Store:addOrder' %}" method="POST">
+      {% csrf_token %}
+      {{ form }}
+      <input type="text" value="{{ note }}" hidden name="note">
+      <input type="text" value="{{ ids }}" hidden name="ids">
+      <input type="text" value="{{ quantities }}" hidden name="quantities">
+      <h4>Expedition mode</h4>
+      <p>Delivery Fees <span>5$</span></p>
+      <h3>Paiement</h3>
+      <div>
+         <p>Paiement in delivery</p>
+         <p>The sending of your order is activated After the confirmation phone call</p>
+      </div>
+      <button type="submit">Validate Paiement</button>
+   </form>
+   
+{% endblock %}
+
+</div>
