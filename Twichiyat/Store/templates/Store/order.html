@@ -1,7 +1,7 @@
 {% extends 'base_layout.html' %}
-<div class="order-container">
-   {%  block content %}
 
+   {%  block content %}
+   <div class="order-container">
    <h2>Total: <span>202$</span></h2>
    <h3>Delivery</h3>
    <form action="{% url 'Store:addOrder' %}" method="POST">
@@ -19,7 +19,8 @@
       </div>
       <button type="submit">Validate Paiement</button>
    </form>
+</div>
    
 {% endblock %}
 
-</div>
+

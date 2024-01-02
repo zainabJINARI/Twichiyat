@@ -9,21 +9,37 @@
         <a href="#" name="Delete_Account"><span class=""><i class="fa-solid fa-user-xmark" style="color: #CD8761;"></i></span> <span class="text-hidden" >Delete Account</span></a>      
     </div>
     <div class="order-list">
-        <div class="order-item">
-            <div class="infor-order">
-                <h5>Ordered :<span class="name-order">jjifjsoieso</span></h5>
-                <p class="order-date">12-13-2023</p>
-                <p>Quantite :</p>
-                <p>Totale Price</p>
-                <p>Ordered By John Smit</p>
-                <p>Phone Number</p>
+        {% for elt in list_order %}
+            <div class="order-item">
+                <div class="infor-order">
+                    <div>
+                        <h5>Ordered By :<span class="name-order">{{ elt.0.name }}</span></h5>
+                        <p class="order-date">{{ elt.0.date }}</p>
+                        <p>Phone Number: <span>{{ elt.0.phone_nbr }}</span></p>
+                    </div>
+                    <div>
+                        <ul>
+                            {% for order_item in elt.1 %}
+                              <li>
+                                <div>
+                                    <p>Product: {{ order_item.product.name }}</p>
+                                    <img src="{{ order_item.product.image.url }}" alt="" width="70px">
+                                </div>
+                                <p>Quantity: {{ order_item.quantity }}</p>
+                                <!-- Add more details as needed -->
+                              </li>
+                            {% endfor %}
+                          </ul>
+                    </div>
+
+                </div>
+                <div class="order-options">
+                    <a href="#"><span class="icon-order"><i class="fa-solid fa-circle-info" style="color: #CD8761;"></i></span>  <span class="text-hidden">Details</span> </a>
+                    <a href="#"><span class="icon-order"><i class="fa-solid fa-circle-check" style="color: #CD8761;"></i></span>  <span class="text-hidden">Approve</span></a>
+                    <a href="#"><span class="icon-order"><i class="fa-solid fa-xmark" style="color: #CD8761;"></i></span>  <span class="text-hidden">Cancel</span></a>
+                </div>   
             </div>
-            <div class="order-options">
-                <a href="#"><span class="icon-order"><i class="fa-solid fa-circle-info" style="color: #CD8761;"></i></span>  <span class="text-hidden">Details</span> </a>
-                <a href="#"><span class="icon-order"><i class="fa-solid fa-circle-check" style="color: #CD8761;"></i></span>  <span class="text-hidden">Approve</span></a>
-                <a href="#"><span class="icon-order"><i class="fa-solid fa-xmark" style="color: #CD8761;"></i></span>  <span class="text-hidden">Cancel</span></a>
-            </div>   
-        </div>
+        {% endfor %}
     </div>
     <div class='delete hidden-div'>
         <h3>Delete Account:</h3>

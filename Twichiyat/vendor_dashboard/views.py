@@ -9,19 +9,28 @@ from django.http import HttpResponse, JsonResponse
 from .forms import UpdateProduct
 from django.shortcuts import get_object_or_404
 from django.db.models import Q
-from Store.models import Order
+from itertools import groupby
+from operator import attrgetter
+from Store.models import Order,OrderItem
 
 # Create your views here.
 @login_required( login_url="/userP/login")
 def dashboard_home(request):
     current_profile = Profile.objects.get(user=request.user)
     if current_profile.is_vendor == True:
-        allorders=Order.objects.all()
         productsVendor = Product.objects.filter(author=request.user)
-        print(allorders)
-        print(len(productsVendor))
-        
-        return render(request,'vendor_dashboard/dashboard.html')
+        itemsOrder = OrderItem.objects.filter(product__in=productsVendor)
+        grouped_items = {}
+
+        for key, group in groupby(itemsOrder, key=attrgetter('order')):
+            order_items = list(group)
+            if key not in grouped_items:
+                grouped_items[key] = (key, order_items)
+            else:
+                existing_order, existing_items = grouped_items[key]
+                grouped_items[key] = (existing_order, existing_items + order_items)
+                
+        return render(request,'vendor_dashboard/dashboard.html',{'list_order':list(grouped_items.values())})
     else:
         return render(request,'vendor_dashboard/redirectasV.html')
 

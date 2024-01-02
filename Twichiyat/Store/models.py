@@ -16,29 +16,28 @@ class Collection(models.Model):
 
     
     
-class Order(models.Model) : 
-     
-   name=models.CharField(max_length = 25)  
-   address = models.CharField(max_length=200)
-   city = models.CharField(max_length=20)
-   phone_nbr = models.CharField(max_length=30)
-   postal_code = models.CharField(max_length=10 ,default='00000')
-   note=models.CharField(max_length = 25,default='No comment ')
-   date = models.DateTimeField(default=datetime.datetime.now, editable=False)
-   products = models.ManyToManyField(Product, through='OrderItem')
-   
-   
-   def save(self, *args, **kwargs):
+class Order(models.Model):
+    name = models.CharField(max_length=25)
+    address = models.CharField(max_length=200)
+    city = models.CharField(max_length=20)
+    phone_nbr = models.CharField(max_length=30)
+    postal_code = models.CharField(max_length=10, default='00000')
+    note = models.CharField(max_length=25, default='No comment')
+    date = models.DateTimeField(default=datetime.datetime.now, editable=False)
+
+    def save(self, *args, **kwargs):
         # Set default value for date if not provided
         if not self.date:
             self.date = datetime.datetime.now()
         super(Order, self).save(*args, **kwargs)
-   
-   def _str_(self) :
-       return self.name
-   
-   
+
+    def __str__(self):
+        return self.name
+
 class OrderItem(models.Model):
-    order = models.ForeignKey('Order', on_delete=models.CASCADE)
-    product = models.ForeignKey('Product', on_delete=models.CASCADE)
-    quantity = models.PositiveIntegerField(default=1)  # Assuming quantity cannot be negative
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='items')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField()
+
+    def __str__(self):
+        return f"{self.quantity} x {self.product.name} in order {self.order.name}"

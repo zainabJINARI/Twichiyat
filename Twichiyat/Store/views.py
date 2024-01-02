@@ -5,7 +5,7 @@ from Store.models import Collection
 from django.shortcuts import get_object_or_404
 from . import forms
 from django.http import HttpResponse, JsonResponse
-from .models import Order
+from .models import Order,OrderItem
 
 # Create your views here.
 
@@ -73,20 +73,20 @@ def add_order(request):
             postal_code=request.POST.get('postal_code'),
             note=request.POST.get('note')
         )
-        listProductFull =[]
-        for i in range(len(idslist)):
+        # listProductFull =[]
+        for i in range(len(idslist)):   
             product = get_object_or_404(Product, id=int(idslist[i]))
             product.quantity=product.quantity-int(proQu[i])
             product.save()  
-            listProductFull.append(product)
-            new_order.products.add(product)
+            new_order_item=OrderItem.objects.create(
+                order=new_order,
+                product=product,
+                quantity=int(proQu[i])
+            )
         print(new_order)
-        # product1 = Product.objects.create(name='Product 1', price=10.99)
-        # product2 = Product.objects.create(name='Product 2', price=19.99)
-        # 
         print(idslist)
         print(proQu)
-        return JsonResponse({'message':'secess'})
+        return redirect('Store:shopnow')
         
     else:
         return redirect('Store:order')

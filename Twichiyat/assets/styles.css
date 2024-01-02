@@ -411,11 +411,13 @@ ul.displaylist li:hover{
 }
 
 
+
+
 .login-container,
 .signup-container,
 .update-container,
 .new-product-container,
-.update-product-container{
+.update-product-container,.order-container{
     margin: auto;
     position: relative;
     width: 100%;
@@ -435,7 +437,7 @@ ul.displaylist li:hover{
 .signup-container h1,
 .update-container h1,
 .new-product-container h1,
-.update-product-container h1{
+.update-product-container h1,.order-container h2{
     margin-bottom: 0em;
     color: #CD8761;
     letter-spacing: 1px;
@@ -445,7 +447,8 @@ ul.displaylist li:hover{
 .signup-container form, 
 .update-container form,
 .new-product-container form, 
-.update-product-container form{
+.update-product-container form,
+.order-container form{
     padding: 1em 3em;
    
 }
@@ -454,7 +457,8 @@ ul.displaylist li:hover{
 .update-container form > p,
 .signup-container form > div,
 .new-product-container form > div, 
-.update-product-container form > div {
+.update-product-container form > div,
+.order-container form > div {
     display: flex;
     text-align: start;
     flex-direction: column;
@@ -474,7 +478,8 @@ ul.displaylist li:hover{
 .new-product-container form > div textarea, 
 .update-product-container form > div input, 
 .update-product-container form > div select,
-.update-product-container form > div textarea{
+.update-product-container form > div textarea,
+.order-container form > div input{
     flex:1;
     padding: 0.6em;
     margin-top: 1em;
@@ -491,7 +496,8 @@ ul.displaylist li:hover{
 .signup-container form > input,
 .update-container form > input,
 .new-product-container form > input,
-.update-product-container form >  input{
+.update-product-container form >  input,
+.order-container form > button{
     margin-top: 2em;
     width: 100%;
     padding: 0.6em ;
