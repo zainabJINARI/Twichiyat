@@ -501,14 +501,12 @@ ul.displaylist li:hover{
     margin-top: 2em;
     width: 100%;
     padding: 0.6em ;
-    
     border-radius: 10px;
     color: rgb(228, 182, 157);
     font-size: 1em;
     background-color: #62412F;
     font-weight: bold;
     text-shadow: #CD8761;
-
 }
 .new-product-container form > input{
     margin-bottom: 6em;
@@ -574,7 +572,10 @@ ul.displaylist li:hover{
    
     
 }
-
+.dashboard-container  .order-list {
+    display: flex;
+    flex-direction: column;
+}
 
 
 .dashboard-container .options-list{
@@ -598,26 +599,89 @@ ul.displaylist li:hover{
     padding: 2em;
     display: flex;
     flex-direction: column;
+   
+   overflow-y: scroll;
 
 }
 .dashboard-container .order-list .order-item{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     max-width: 900px;
     width: 100%;
-    align-self: center;
-    border: 1px solid red;
-
-    
-
+    /* align-self: center; */
+    border: 2px solid #8B4513;
+    padding: 1em 2em;
+    border-radius: 10px;
+    margin: 1em auto;
+}
+.dashboard-container .order-list .order-item:last-child{
+    margin-bottom: 5em;
 }
 .dashboard-container .order-list .order-item .infor-order{
     flex:1;
 
 }
-.dashboard-container .order-list .order-item .order-options{
+.dashboard-container .order-list .order-item .infor-order ul{
+    list-style: none;
     display: flex;
     flex-direction: column;
+    padding-left: 0;
+    max-width: 600px;
+    margin: auto;
+}
+.dashboard-container .order-list .order-item .infor-order ul li{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 1em 0;
+    padding:    0.5em 1em;
+    background-color: #DEB887;
+    border-radius: 10px;
+}
+.dashboard-container .order-list .order-item .infor-order ul li > img{
+    width: 100%;
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 5px;
+}
+.dashboard-container .order-list .order-item .infor-order ul li > div{
+    text-align: center;
+    color: #8B4513;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+.dashboard-container .order-list .order-item .infor-order .order-detail{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+}
+.dashboard-container .order-list .order-item .infor-order .order-detail > div{
+    margin-left: auto;
+    text-align: end;
+    font-size: small;
+    color: #CD8761;
+    font-weight: bold;
+
+    
+}
+.dashboard-container .order-list .order-item .infor-order .order-detail > div .order-date{
+    font-size: smaller;
+}
+.dashboard-container .order-list .order-item .infor-order .order-detail > h4{
+    font-family: 'Berkshire Swash', serif;
+   
+    color: #CD8761;
+    text-align: start;
+    white-space: nowrap;  
+}
+.dashboard-container .order-list .order-item .infor-order .order-detail > h4 .name-order{
+    font-size: 1.5em;
+}
+.dashboard-container .order-list .order-item .order-options{
+    display: flex;
+    flex-direction: row;
     justify-content: space-around;
 }
 .dashboard-container .order-list .order-item .order-options a{

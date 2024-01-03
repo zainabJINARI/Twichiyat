@@ -12,25 +12,29 @@
         {% for elt in list_order %}
             <div class="order-item">
                 <div class="infor-order">
-                    <div>
-                        <h5>Ordered By :<span class="name-order">{{ elt.0.name }}</span></h5>
-                        <p class="order-date">{{ elt.0.date }}</p>
-                        <p>Phone Number: <span>{{ elt.0.phone_nbr }}</span></p>
+                    <div class="order-detail">
+                        <h4>Ordered By :<span class="name-order">{{ elt.0.name }}</span></h4>
+                        <div>
+                            <p class="order-date">{{ elt.0.date }}</p>
+                            <p>Phone: <span>{{ elt.0.phone_nbr }}</span></p>
+                        </div>
+  
                     </div>
-                    <div>
+                    
                         <ul>
                             {% for order_item in elt.1 %}
                               <li>
+                                <img src="{{ order_item.product.image.url }}" alt="" width="70px">
                                 <div>
                                     <p>Product: {{ order_item.product.name }}</p>
-                                    <img src="{{ order_item.product.image.url }}" alt="" width="70px">
+                                    <p>Quantity: {{ order_item.quantity }}</p>
                                 </div>
-                                <p>Quantity: {{ order_item.quantity }}</p>
+                                
                                 <!-- Add more details as needed -->
                               </li>
                             {% endfor %}
                           </ul>
-                    </div>
+                    
 
                 </div>
                 <div class="order-options">

@@ -45,6 +45,7 @@ addCarBtn.addEventListener('click',()=>{
 			
 		}
 	}
+	closeProductModal()
 	
 })
 function showProductModal(name, price, imageUrl,Quantity=1,description,size,id) {
