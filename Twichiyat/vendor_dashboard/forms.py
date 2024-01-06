@@ -5,7 +5,6 @@ from Store.models import Collection
 class UpdateProduct(forms.ModelForm):
     STATUS_CHOICES = [
         ('Available', 'Available'),
-        ('Ordered', 'Ordered'),
         ('Sold', 'Sold'),
     ]
 

@@ -13,24 +13,24 @@
             <div class="order-item">
                 <div class="infor-order">
                     <div class="order-detail">
-                        <h4>Ordered By :<span class="name-order">{{ elt.0.name }}</span></h4>
+                        <h4>Ordered By :<span class="name-order">{{ elt.order.name }}</span></h4>
+                        <h5>Total Price : <span>{{ elt.total_price }} $</span></h5>
                         <div>
-                            <p class="order-date">{{ elt.0.date }}</p>
-                            <p>Phone: <span>{{ elt.0.phone_nbr }}</span></p>
+                            <p class="order-date">{{ elt.order.date }}</p>
+                            <p>Phone: <span>{{ elt.order.phone_nbr }}</span></p>
                         </div>
   
                     </div>
                     
                         <ul>
-                            {% for order_item in elt.1 %}
+                            {% for order_item in elt.order_items %}
                               <li>
                                 <img src="{{ order_item.product.image.url }}" alt="" width="70px">
                                 <div>
                                     <p>Product: {{ order_item.product.name }}</p>
                                     <p>Quantity: {{ order_item.quantity }}</p>
                                 </div>
-                                
-                                <!-- Add more details as needed -->
+                              
                               </li>
                             {% endfor %}
                           </ul>
@@ -38,9 +38,9 @@
 
                 </div>
                 <div class="order-options">
-                    <a href="#"><span class="icon-order"><i class="fa-solid fa-circle-info" style="color: #CD8761;"></i></span>  <span class="text-hidden">Details</span> </a>
-                    <a href="#"><span class="icon-order"><i class="fa-solid fa-circle-check" style="color: #CD8761;"></i></span>  <span class="text-hidden">Approve</span></a>
-                    <a href="#"><span class="icon-order"><i class="fa-solid fa-xmark" style="color: #CD8761;"></i></span>  <span class="text-hidden">Cancel</span></a>
+                    <a href="#" onclick="showProductDetailsAlert('{{ elt.order.address }}' , '{{ elt.order.city }}' ,'{{ elt.order.postal_code }}' , '{{ elt.order.note }}' )" ><span class="icon-order"><i class="fa-solid fa-circle-info" style="color: #CD8761;"></i></span>  <span class="text-hidden">Details</span> </a>                    
+                    <a href="{% url 'vendor_dashboard:annuler_commande' %}?order_id={{ elt.order.id }}"><span class="icon-order"><i class="fa-solid fa-circle-check" style="color: #CD8761;"></i></span>  <span class="text-hidden">Approve</span></a>
+                    <a href="{% url 'vendor_dashboard:annuler_commande' %}?order_id={{ elt.order.id }}{% for order_item in elt.order_items %}&quantity={{ order_item.quantity }}&product_id={{ order_item.product.id }}{% if not forloop.last %}&{% endif %}{% endfor %}" ><span class="icon-order"><i class="fa-solid fa-xmark" style="color: #CD8761;"></i></span><span class="text-hidden">Cancel</span></a>                
                 </div>   
             </div>
         {% endfor %}
@@ -56,7 +56,10 @@
             </form>
         </div>
     </div>
-</div>
+    <div class="centered-div hidden-div" id="productDetails">
 
+    </div>
+</div>
+<script src="{% static 'detailsOrder.js' %}"></script>
 <script src="{% static 'delete.js' %}"></script>
 {% endblock %}

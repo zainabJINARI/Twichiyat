@@ -7,14 +7,20 @@ var idP=1
 let cartList=JSON.parse(localStorage.getItem('cartList'))
 const addCarBtn = document.getElementById('add-cart')
 const cartElt = document.getElementById('cart-item-nbr') 
-if(cartList && cartList.length!=0){
-	cartElt.classList.add('cart-item-nbr')
-	cartElt.textContent=cartList.length
+
+function showcartnbr(){
+	if(cartList && cartList.length!=0){
+		cartElt.classList.add('cart-item-nbr')
+		cartElt.textContent=cartList.length
+	}
 }
+
+showcartnbr()
 //const cartNbr = document.getElementById('cart-item-nbr')
 //cartNbr.textContent=2
 
 addCarBtn.addEventListener('click',()=>{
+	cartList=JSON.parse(localStorage.getItem('cartList'))
 	console.log(cartList)
     newItem={
 		idProd:parseInt(idP, 10),
@@ -26,7 +32,7 @@ addCarBtn.addEventListener('click',()=>{
 		quan:inputq.value,
 		maxquant:quant
 	}
-	if(!cartList){
+	if(!cartList|| cartList.length==0){
 		localStorage.setItem('cartList',JSON.stringify([newItem]))
 		cartElt.classList.add('cart-item-nbr')
 		cartElt.textContent=1
@@ -45,6 +51,7 @@ addCarBtn.addEventListener('click',()=>{
 			
 		}
 	}
+	showcartnbr()
 	closeProductModal()
 	
 })

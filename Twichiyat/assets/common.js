@@ -1,13 +1,5 @@
-const categories = document.getElementById('categoriesnav')
-// const cartElt = document.getElementById('cart-item-nbr') 
+let cartListDis=JSON.parse(localStorage.getItem('cartList'))
 
-// function showcartnbr(){
-//     let cartListDis=JSON.parse(localStorage.getItem('cartList'))
-// 	if(cartList && cartListDis.length!=0){
-// 		cartElt.classList.add('cart-item-nbr')
-// 		cartElt.textContent=cartListDis.length
-// 	}
-// }
 function AddI(e,quantite){
     
     const inputElt = e.target.offsetParent.querySelector('input[type="text"]')
@@ -27,11 +19,10 @@ function SubI(e){
     }
 }
 
-function displayCartList(){
-    let cartListDis=JSON.parse(localStorage.getItem('cartList'))
+function displayCartList(cartContainer){
     cartContainer.style.display='flex'
     console.log(cartListDis)
-    if(!cartListDis || cartListDis.length == 0){
+    if(!cartListDis){
         document.getElementById('cart-items').style.display='none'
         document.querySelector('div[class="no-items"]').style.display='flex'
        
@@ -102,7 +93,6 @@ function displayCartList(){
                 })  
                 console.log(cartListDis)
                 localStorage.setItem('cartList', JSON.stringify(cartListDis))
-                
                 displayCartList()
             })
             containeritem.appendChild(closebnt)
@@ -120,53 +110,7 @@ function displayCartList(){
         document.querySelector('div[class="no-items"]').style.display='none'
     }
     
-    const divpay = document.getElementById('paycont')
-    divpay.innerHTML=`
-    <textarea name="note" id="" cols="30" rows="5" placeholder="Add note to your order" ></textarea>
-    `
-     //   
-    cartListDis.forEach((elt)=>{
-        const inputP = document.createElement('input');
-        inputP.type = 'hidden';
-        inputP.name = 'product_id[]';
-        inputP.value = elt.idProd;
-        const inputQ = document.createElement('input');
-        inputQ.type = 'hidden';
-        inputQ.name = 'product_q[]';
-        inputQ.value = parseInt(elt.quan, 10);
-        console.log(elt.quan)
-        divpay.appendChild(inputP);
-        divpay.appendChild(inputQ);
-    })
-    //
-    
 
-   
+
 }
-
-
-
-document.querySelector('.pay-btn').addEventListener('click',()=>{
-    localStorage.clear()
-})
-categories.addEventListener('click',(e)=>{
-    categories.classList.toggle('categoriesnav')
-    document.querySelector('ul.submenu').classList.toggle('displaylist')
-})
-const displayCartBtn = document.querySelector('li[class="nav-elt rounded-cart"]')
-const cartContainer = document.querySelector('.cart-area')
-displayCartBtn.addEventListener('click',displayCartList)
-document.querySelector('.close-cart').addEventListener('click',()=>{
-    cartContainer.style.display='none'
-    const cartElt = document.getElementById('cart-item-nbr')
-    let cartListDis=JSON.parse(localStorage.getItem('cartList'))
-    if(cartListDis && cartListDis.length!=0){
-    		cartElt.classList.add('cart-item-nbr')
-    		cartElt.textContent=cartListDis.length
-    }else{
-        cartElt.classList.remove('cart-item-nbr')
-    	cartElt.textContent=''
-    }
-  
-})
-document.getElementById('cart-items')
+export { displayCartList }

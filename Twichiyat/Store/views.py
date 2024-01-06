@@ -9,15 +9,30 @@ from .models import Order,OrderItem
 
 # Create your views here.
 
+# def shop_now(request):
+#     products = Product.objects.all().order_by('date')
+#     latest_products=[]
+#     if len(products)>=5:
+#         for i in range(len(products)-1,0,-1):
+#             if len(latest_products)<4:
+#                 latest_products.append(products[i])
+#             else:
+#                 break
+
+#     collections = Collection.objects.all()
+    
+#     return render(request,'Store/home.html',{'collections':collections,'products':latest_products})
 def shop_now(request):
-    products = Product.objects.all().order_by('date')
+    current_user = request.user
+    if current_user.is_anonymous :
+       products = Product.objects.all().order_by('date')
+    else :
+       products = Product.objects.all().order_by('date').exclude(author=current_user)  
+       
     latest_products=[]
-    if len(products)>=5:
-        for i in range(len(products)-1,0,-1):
-            if len(latest_products)<4:
-                latest_products.append(products[i])
-            else:
-                break
+    for product in products:
+        if len(latest_products) < 4 and product.quantity > 0:
+            latest_products.append(product)
 
     collections = Collection.objects.all()
     
@@ -33,11 +48,23 @@ def file_product(request):
 def productlist(request):
     return render(request,'Store/product_list.html')
 
+# def product_category(request, category_id):
+#     category = get_object_or_404(Collection, id=category_id)
+#     print(category)
+#     products = Product.objects.filter(type_p=category)
+#     print(products)
+#     return render(request, 'Store/productByCategory.html', {'products': products, 'category': category})
+
 def product_category(request, category_id):
     category = get_object_or_404(Collection, id=category_id)
-    print(category)
-    products = Product.objects.filter(type_p=category)
-    print(products)
+    print(request.user)
+    current_user = request.user
+
+    if current_user.is_anonymous :
+       products = Product.objects.filter(type_p=category ,quantity__gt=0)
+    else  :
+       products = Product.objects.filter(type_p=category ,quantity__gt=0).exclude(author=current_user)
+
     return render(request, 'Store/productByCategory.html', {'products': products, 'category': category})
 
 def product_details(request,product_id):
@@ -59,8 +86,6 @@ def order_product (request) :
 def add_order(request):
     if request.method=='POST':
         print(request.POST)
-        # name = 
-       
         ids = request.POST.get('ids')
         quantities = request.POST.get('quantities')
         idslist=ids.split(',')
@@ -77,15 +102,15 @@ def add_order(request):
         for i in range(len(idslist)):   
             product = get_object_or_404(Product, id=int(idslist[i]))
             product.quantity=product.quantity-int(proQu[i])
-            product.save()  
+            product.save() 
+            if product.quantity == 0 :
+                product.status = "Sold" 
+                product.save() 
             new_order_item=OrderItem.objects.create(
                 order=new_order,
                 product=product,
                 quantity=int(proQu[i])
             )
-        print(new_order)
-        print(idslist)
-        print(proQu)
         return redirect('Store:shopnow')
         
     else:

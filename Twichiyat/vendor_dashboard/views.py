@@ -12,6 +12,7 @@ from django.db.models import Q
 from itertools import groupby
 from operator import attrgetter
 from Store.models import Order,OrderItem
+import re
 
 # Create your views here.
 @login_required( login_url="/userP/login")
@@ -20,15 +21,26 @@ def dashboard_home(request):
     if current_profile.is_vendor == True:
         productsVendor = Product.objects.filter(author=request.user)
         itemsOrder = OrderItem.objects.filter(product__in=productsVendor)
+        
         grouped_items = {}
 
         for key, group in groupby(itemsOrder, key=attrgetter('order')):
             order_items = list(group)
+            total_price=0
+            for item in order_items:
+                total_price += item.product.price * item.quantity
+                
             if key not in grouped_items:
-                grouped_items[key] = (key, order_items)
+                grouped_items[key] = {'order': key, 'order_items': order_items, 'total_price': total_price}
             else:
-                existing_order, existing_items = grouped_items[key]
-                grouped_items[key] = (existing_order, existing_items + order_items)
+                existing_order = grouped_items[key]['order']
+                existing_items = grouped_items[key]['order_items']
+                existing_total_price = grouped_items[key]['total_price']
+                grouped_items[key] = {
+                    'order': existing_order,
+                    'order_items': existing_items + order_items,
+                    'total_price': existing_total_price + total_price
+            }
                 
         return render(request,'vendor_dashboard/dashboard.html',{'list_order':list(grouped_items.values())})
     else:
@@ -142,6 +154,31 @@ def search_product(request) :
     else :
      products = Product.objects.filter(author=request.user)
     return   render(request , 'vendor_dashboard/search_product.html' , {'products':products} )
+
+
+def annuler_commande (request) :
+    quantities = request.GET.getlist('quantity')
+    product_ids = request.GET.getlist('product_id')
+    order_id = int(request.GET.get('order_id'))
+
+    for i in range(len(product_ids)):
+        product_id = int (product_ids[i])
+        quantity = int(quantities[i])
+        product = Product.objects.get(id=product_id)
+        product.quantity += quantity
+        product.save()
+        if product.quantity > 0 :
+                product.status = "Available" 
+                product.save() 
+    order=Order.objects.get(id=order_id)  
+    order.delete()
+    return redirect('vendor_dashboard:dashboard')
+
+def approve_command(request):
     
+    order_id = int(request.GET.get('order_id'))
+    order=Order.objects.get(id=order_id)  
+    order.delete()
+    return redirect('vendor_dashboard:dashboard')
 
     

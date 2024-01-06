@@ -13,6 +13,8 @@ urlpatterns = [
     path('update_product/<int:product_id>/', views.update_product, name='update_product'),
     re_path(r'^delete_product/$',views.delete_product, name="delete_product"),
     re_path(r'^search_product/$',views.search_product, name="search_product"),
+    path('annuler_commande/', views.annuler_commande , name='annuler_commande'),
+    path('approve_commande/', views.approve_command , name='approve_commande'),
     
 ]
  
