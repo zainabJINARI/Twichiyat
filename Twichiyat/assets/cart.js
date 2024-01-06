@@ -1,13 +1,5 @@
 const categories = document.getElementById('categoriesnav')
-// const cartElt = document.getElementById('cart-item-nbr') 
 
-// function showcartnbr(){
-//     let cartListDis=JSON.parse(localStorage.getItem('cartList'))
-// 	if(cartList && cartListDis.length!=0){
-// 		cartElt.classList.add('cart-item-nbr')
-// 		cartElt.textContent=cartListDis.length
-// 	}
-// }
 function AddI(e,quantite){
     
     const inputElt = e.target.offsetParent.querySelector('input[type="text"]')
@@ -146,9 +138,9 @@ function displayCartList(){
 
 
 
-document.querySelector('.pay-btn').addEventListener('click',()=>{
-    localStorage.clear()
-})
+// document.querySelector('.pay-btn').addEventListener('click',()=>{
+//     localStorage.clear()
+// })
 categories.addEventListener('click',(e)=>{
     categories.classList.toggle('categoriesnav')
     document.querySelector('ul.submenu').classList.toggle('displaylist')
