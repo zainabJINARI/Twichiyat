@@ -677,6 +677,7 @@ ul.displaylist li:hover{
 .dashboard-container .order-list .order-item .infor-order .order-detail{
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     text-align: center;
 }
 
@@ -710,6 +711,7 @@ ul.displaylist li:hover{
 }
 .dashboard-container .order-list .order-item .infor-order .order-detail > h4 .name-order{
     font-size: 1.5em;
+    white-space: wrap; 
 }
 .dashboard-container .order-list .order-item .order-options{
     display: flex;
