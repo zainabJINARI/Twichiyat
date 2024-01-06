@@ -30,9 +30,12 @@ def shop_now(request):
        products = Product.objects.all().order_by('date').exclude(author=current_user)  
        
     latest_products=[]
-    for product in products:
-        if len(latest_products) < 4 and product.quantity > 0:
-            latest_products.append(product)
+    if len(products)>=5:
+        for i in range(len(products)-1,0,-1):
+            if len(latest_products)<4:
+                latest_products.append(products[i])
+            else:
+                break
 
     collections = Collection.objects.all()
     
