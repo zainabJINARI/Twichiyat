@@ -170,15 +170,20 @@ def annuler_commande (request) :
         if product.quantity > 0 :
                 product.status = "Available" 
                 product.save() 
-    order=Order.objects.get(id=order_id)  
-    order.delete()
+    
+    OrderItem.objects.filter(order_id=order_id, product__author=request.user).delete()
+
+    if not OrderItem.objects.filter(order_id=order_id).exists():
+        Order.objects.get(id=order_id).delete()
     return redirect('vendor_dashboard:dashboard')
 
 def approve_command(request):
     
     order_id = int(request.GET.get('order_id'))
-    order=Order.objects.get(id=order_id)  
-    order.delete()
+    OrderItem.objects.filter(order_id=order_id, product__author=request.user).delete()
+
+    if not OrderItem.objects.filter(order_id=order_id).exists():
+        Order.objects.get(id=order_id).delete()
     return redirect('vendor_dashboard:dashboard')
 
     
