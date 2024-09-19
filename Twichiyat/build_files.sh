@@ -14,4 +14,5 @@ pip install --disable-pip-version-check --target . --upgrade -r requirements.txt
 
 # Install necessary build tools
 
+python3.9 manage.py collectstatic --noinput
 
