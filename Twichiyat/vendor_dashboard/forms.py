@@ -90,6 +90,7 @@ class CreateProduct(forms.ModelForm):
         ('AS','All Sizes'),
         ('Stnd','Standard')
     ]
+    # here
     type_choices =[]
     try:
         for i in Collection.objects.all():
