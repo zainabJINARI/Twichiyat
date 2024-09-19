@@ -1,7 +1,7 @@
 from django import forms
 from .models import Product
 from Store.models import Collection
-
+from django.db.utils import ProgrammingError
 class UpdateProduct(forms.ModelForm):
     STATUS_CHOICES = [
         ('Available', 'Available'),
@@ -40,9 +40,18 @@ class UpdateProduct(forms.ModelForm):
     ]
 
     type_choices =[]
-    for i in Collection.objects.all():
-        print('am here')
-        type_choices.append((str(i),str(i)))
+    
+        
+        
+    
+    
+    try:
+        for i in Collection.objects.all():
+            print('am here')
+            type_choices.append((str(i),str(i)))
+    except ( ProgrammingError) as e:
+        cat_choices=[]
+    
     
     name = forms.CharField(max_length=255, widget=forms.TextInput(attrs={'style': 'overflow: auto;'}))
     quantity = forms.IntegerField(widget=forms.NumberInput(attrs={'style': 'overflow: auto;'}))
@@ -82,9 +91,12 @@ class CreateProduct(forms.ModelForm):
         ('Stnd','Standard')
     ]
     type_choices =[]
-    for i in Collection.objects.all():
-        type_choices.append((str(i),str(i)))
-    print(type_choices)
+    try:
+        for i in Collection.objects.all():
+            type_choices.append((str(i),str(i)))
+        print(type_choices)
+    except ( ProgrammingError) as e:
+        type_choices=[]
     name = forms.CharField(max_length=255, widget=forms.TextInput(attrs={'style': 'overflow: auto;'}))
     quantity = forms.IntegerField(widget=forms.NumberInput(attrs={'style': 'overflow: auto;'}))
     color = forms.ChoiceField(choices=color_choices, widget=forms.Select(attrs={'style': 'overflow: auto;'}))
