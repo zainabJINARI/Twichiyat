@@ -1,15 +1,12 @@
 #!/bin/bash
 
 # Ensure pip is installed and upgrade pip
-python3 -m ensurepip --upgrade
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+python3.10 get-pip.py
 
-python3 -m pip install --upgrade pip setuptools wheel
-
-# Install distutils separately
-python3 -m pip install distutils
-
-# Install dependencies from requirements.txt
+# Upgrade pip and install dependencies
+python3.10 -m pip install --upgrade pip setuptools wheel
 pip install -r requirements.txt
 
 # Collect static files
-python3 manage.py collectstatic --noinput
+python3.10 manage.py collectstatic --noinput
